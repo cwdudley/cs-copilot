@@ -1,4 +1,4 @@
-# CS Copilot
+# CS Copilot Simulation Mode
 
 Voice Customer Success copilot demo built on [LiveKit Agents](https://docs.livekit.io/agents/), Groq (STT/LLM/TTS), and a browser UI.
 
