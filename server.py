@@ -18,7 +18,7 @@ import uuid
 from aiohttp import web
 from dotenv import load_dotenv
 from livekit import rtc
-from livekit.agents import AgentSession
+from livekit.agents import AgentSession, RoomInputOptions
 from livekit.agents.utils import http_context
 from livekit.api import AccessToken, VideoGrants
 from livekit.plugins import groq, silero
@@ -62,7 +62,11 @@ async def run_copilot() -> None:
             vad=silero.VAD.load(),
             turn_handling={"endpointing": {"min_delay": 0.3, "max_delay": 5.0}},
         )
-        await session.start(agent=Assistant(), room=room)
+        await session.start(
+            agent=Assistant(),
+            room=room,
+            room_input_options=RoomInputOptions(close_on_disconnect=False),
+        )
 
         greeted = False
 
