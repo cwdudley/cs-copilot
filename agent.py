@@ -5,8 +5,6 @@ from livekit.agents import Agent, AgentSession, RoomInputOptions, function_tool
 from livekit.plugins import groq, silero
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
-from livekit_context import csm_context
-
 load_dotenv()
 
 logger = logging.getLogger("voice-agent")
@@ -256,7 +254,7 @@ Voice style: concise, conversational, direct. No AI fluff. Partner, don't lectur
 When the customer mentions a specific pain or metric, ask for context you don't have (current numbers, deployment scale, rollout stage, renewal timing) before specific advice. Don't fabricate data.
 """
 
-SYSTEM_PROMPT = SYSTEM_PROMPT_FULL + "\n\n" + csm_context()
+SYSTEM_PROMPT = SYSTEM_PROMPT_FULL
 
 
 @function_tool
@@ -301,7 +299,7 @@ async def entrypoint(ctx: agents.JobContext):
         room_input_options=RoomInputOptions(),
     )
 
-    await session.say("Hey, I'm your CS copilot. What are you working on?")
+    await session.say("Hey, what can I help you with?")
 
 
 if __name__ == "__main__":
