@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS Copilot</title>
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #09090b;
+      color: #fafafa;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+    }
+
+    /* ── Fixed header ─────────────────────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #18181b;
+      z-index: 100;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3f3f46;
+      transition: background 0.3s;
+    }
+
+    header h1 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+    }
+
+    /* ── Copilot view (first 100vh) ───────────────────────────────────────── */
+    .copilot-view {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 80px 24px 40px;
+      flex-shrink: 0;
+    }
+
+    /* ── Orb ──────────────────────────────────────────────────────────────── */
+    .orb-wrapper {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .orb-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(99, 102, 241, 0.15);
+    }
+
+    .orb-ring-1 { width: 180px; height: 180px; }
+    .orb-ring-2 { width: 220px; height: 220px; }
+    .orb-ring-3 { width: 260px; height: 260px; }
+
+    .orb {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #818cf8, #4f46e5 60%, #1e1b4b);
+      box-shadow: 0 0 40px rgba(79, 70, 229, 0.35);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Speaking states ──────────────────────────────────────────────────── */
+    body.agent-speaking .orb {
+      box-shadow: 0 0 60px rgba(99, 102, 241, 0.7), 0 0 100px rgba(99, 102, 241, 0.3);
+      animation: pulse-agent 1.2s ease-in-out infinite;
+    }
+    body.agent-speaking .orb-ring {
+      animation: expand-ring 1.8s ease-out infinite;
+    }
+    body.agent-speaking .orb-ring-2 { animation-delay: 0.3s; }
+    body.agent-speaking .orb-ring-3 { animation-delay: 0.6s; }
+
+    body.user-speaking .orb {
+      box-shadow: 0 0 50px rgba(34, 197, 94, 0.6), 0 0 80px rgba(34, 197, 94, 0.2);
+      background: radial-gradient(circle at 35% 35%, #86efac, #22c55e 60%, #14532d);
+      animation: pulse-user 0.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse-agent {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.06); }
+    }
+    @keyframes pulse-user {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.04); }
+    }
+    @keyframes expand-ring {
+      0%   { opacity: 0.4; transform: scale(1); }
+      100% { opacity: 0;   transform: scale(1.25); }
+    }
+
+    /* ── Status ───────────────────────────────────────────────────────────── */
+    .status {
+      font-size: 15px;
+      color: #71717a;
+      letter-spacing: 0.02em;
+      min-height: 22px;
+      transition: color 0.3s;
+    }
+    body.agent-speaking .status { color: #818cf8; }
+    body.user-speaking  .status { color: #22c55e; }
+    body.connected      .status { color: #a1a1aa; }
+
+    /* ── Transcript ───────────────────────────────────────────────────────── */
+    .transcript {
+      width: 100%;
+      max-width: 560px;
+      min-height: 60px;
+      max-height: 160px;
+      overflow-y: auto;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      scrollbar-width: none;
+    }
+    .transcript::-webkit-scrollbar { display: none; }
+
+    .transcript-line {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #52525b;
+      transition: color 0.4s;
+    }
+    .transcript-line.agent  { color: #a1a1aa; }
+    .transcript-line.user   { color: #6366f1; text-align: right; }
+    .transcript-line.system { color: #3f3f46; font-style: italic; }
+    .transcript-line.latest { color: #e4e4e7; }
+
+    /* ── Connect button ───────────────────────────────────────────────────── */
+    .connect-btn {
+      padding: 11px 28px;
+      border-radius: 8px;
+      border: 1px solid #27272a;
+      background: #18181b;
+      color: #a1a1aa;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .connect-btn:hover               { background: #27272a; color: #fafafa; }
+    .connect-btn.connected           { border-color: #dc2626; color: #ef4444; }
+    .connect-btn.connected:hover     { background: #1c0a0a; }
+    .connect-btn:disabled            { opacity: 0.4; cursor: not-allowed; }
+
+    /* ── Scroll hint ──────────────────────────────────────────────────────── */
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: #27272a;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .scroll-hint:hover { color: #3f3f46; }
+    .scroll-hint svg   { width: 16px; height: 16px; }
+
+    /* ── Simulation section ───────────────────────────────────────────────── */
+    .sim-section {
+      width: 100%;
+      max-width: 608px;
+      padding: 40px 24px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sim-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2px;
+    }
+
+    .sim-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3f3f46;
+    }
+
+    .stop-btn {
+      padding: 5px 14px;
+      border-radius: 6px;
+      border: 1px solid #27272a;
+      background: transparent;
+      color: #52525b;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: none;
+    }
+    .stop-btn:hover {
+      border-color: #dc2626;
+      color: #ef4444;
+      background: #1c0a0a;
+    }
+    .stop-btn.visible { display: inline-block; }
+
+    /* ── Scenario grid ────────────────────────────────────────────────────── */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .scenario-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 11px 14px;
+      border-radius: 8px;
+      border: 1px solid #27272a;
+      background: #18181b;
+      cursor: pointer;
+      transition: all 0.18s;
+      text-align: left;
+    }
+    .scenario-btn:hover {
+      border-color: #3f3f46;
+      background: #1c1c1f;
+    }
+    .scenario-btn.active {
+      border-color: #4f46e5;
+      background: #1a1730;
+    }
+    .scenario-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .s-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #d4d4d8;
+      line-height: 1.2;
+    }
+    .s-product {
+      font-size: 11px;
+      color: #52525b;
+      line-height: 1.2;
+    }
+
+    .scenario-btn.active .s-name    { color: #818cf8; }
+    .scenario-btn.active .s-product { color: #4f46e5; }
+
+    /* ── Footer ───────────────────────────────────────────────────────────── */
+    footer {
+      font-size: 12px;
+      color: #27272a;
+      padding-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-dot" id="statusDot"></div>
+    <h1>CS Copilot</h1>
+  </header>
+
+  <!-- ── Copilot view ───────────────────────────────────────────────────── -->
+  <div class="copilot-view">
+
+    <div class="orb-wrapper">
+      <div class="orb-ring orb-ring-1"></div>
+      <div class="orb-ring orb-ring-2"></div>
+      <div class="orb-ring orb-ring-3"></div>
+      <div class="orb" id="orb"></div>
+    </div>
+
+    <p class="status" id="status">Ready</p>
+
+    <div class="transcript" id="transcript"></div>
+
+    <button class="connect-btn" id="connectBtn" onclick="toggleConnect()">Connect</button>
+
+    <a class="scroll-hint" href="#sim-section" aria-label="Scroll to simulation scenarios">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+      Simulation Scenarios
+    </a>
+
+  </div>
+
+  <!-- ── Simulation section ─────────────────────────────────────────────── -->
+  <div class="sim-section" id="sim-section">
+
+    <div class="sim-header">
+      <span class="sim-label">Simulation Scenarios</span>
+      <button class="stop-btn" id="stopBtn" onclick="stopSimulation()">Stop</button>
+    </div>
+
+    <div class="scenario-grid" id="scenarioGrid">
+
+      <button class="scenario-btn" onclick="startScenario(0)">
+        <span class="s-name">Priya Shah</span>
+        <span class="s-product">AI Contact Center · Series B</span>
+      </button>
+
+      <button class="scenario-btn" onclick="startScenario(1)">
+        <span class="s-name">Marcus Reilly</span>
+        <span class="s-product">SaaS In-App Voice Copilot</span>
+      </button>
+
+      <button class="scenario-btn" onclick="startScenario(2)">
+        <span class="s-name">Amara Okonkwo</span>
+        <span class="s-product">Telehealth AI Intake</span>
+      </button>
+
+      <button class="scenario-btn" onclick="startScenario(3)">
+        <span class="s-name">Jamie Park</span>
+        <span class="s-product">Consumer AI · Tutors &amp; Friends</span>
+      </button>
+
+    </div>
+
+    <footer>Powered by LiveKit · Groq · SuccessCOACHING</footer>
+
+  </div>
+
+  <script>
+    let room = null;
+    let connected = false;
+    let simMode = false;
+
+    const statusEl  = document.getElementById("status");
+    const connectBtn  = document.getElementById("connectBtn");
+    const transcriptEl = document.getElementById("transcript");
+    const statusDot  = document.getElementById("statusDot");
+    const stopBtn    = document.getElementById("stopBtn");
+    const scenarioBtns = document.querySelectorAll(".scenario-btn");
+
+    // ── UI helpers ─────────────────────────────────────────────────────────
+
+    function setStatus(text, state) {
+      statusEl.textContent = text;
+      document.body.className = state || "";
+      statusDot.style.background =
+        state === "agent-speaking" ? "#818cf8"
+        : state === "user-speaking" ? "#22c55e"
+        : state === "connected"     ? "#22c55e"
+        : "#3f3f46";
+    }
+
+    function addTranscript(text, role) {
+      transcriptEl.querySelectorAll(".latest").forEach(el => el.classList.remove("latest"));
+      const line = document.createElement("div");
+      line.className = `transcript-line ${role} latest`;
+      line.textContent = text;
+      transcriptEl.appendChild(line);
+      transcriptEl.scrollTop = transcriptEl.scrollHeight;
+      while (transcriptEl.children.length > 20) transcriptEl.removeChild(transcriptEl.firstChild);
+    }
+
+    function setActiveScenario(index) {
+      scenarioBtns.forEach((b, i) => b.classList.toggle("active", i === index));
+      stopBtn.classList.toggle("visible", index >= 0);
+    }
+
+    function clearActiveScenario() {
+      scenarioBtns.forEach(b => b.classList.remove("active"));
+      stopBtn.classList.remove("visible");
+    }
+
+    function setScenarioBtnsDisabled(disabled) {
+      scenarioBtns.forEach(b => b.disabled = disabled);
+    }
+
+    // ── Room event wiring ──────────────────────────────────────────────────
+    // Shared between copilot mode and simulation mode.
+
+    function attachRoomEvents(lkRoom, isSimulation) {
+      lkRoom.on(LivekitClient.RoomEvent.TrackSubscribed, (track) => {
+        if (track.kind === LivekitClient.Track.Kind.Audio) {
+          const el = track.attach();
+          el.style.display = "none";
+          document.body.appendChild(el);
+        }
+      });
+
+      lkRoom.on(LivekitClient.RoomEvent.ActiveSpeakersChanged, (speakers) => {
+        const localId = lkRoom.localParticipant.identity;
+        const agentSpeaking = speakers.some(s => s.identity !== localId);
+        const userSpeaking  = !isSimulation && speakers.some(s => s.identity === localId);
+        if      (agentSpeaking) setStatus("Speaking…", "agent-speaking");
+        else if (userSpeaking)  setStatus("Listening…", "user-speaking");
+        else                    setStatus(isSimulation ? "Simulation running" : "Connected", "connected");
+      });
+
+      // livekit-agents v1.x publishes transcriptions as text streams on 'lk.transcription'.
+      // In simulations, both agents publish for the same utterance (one as their own TTS,
+      // one as STT of what they heard) — dedupe by content + role within a short window.
+      const _recentTranscripts = new Map(); // key=`${role}::${text}` -> timestamp
+      const DEDUPE_WINDOW_MS = 4000;
+
+      lkRoom.registerTextStreamHandler("lk.transcription", async (reader, participantInfo) => {
+        try {
+          const text = (await reader.readAll() || "").trim();
+          if (!text) return;
+
+          const identity = participantInfo?.identity || "";
+          let role = "agent";
+
+          if (isSimulation) {
+            if (identity.includes("customer")) role = "user";
+            else if (identity.includes("copilot")) role = "agent";
+          } else {
+            const localId = lkRoom.localParticipant.identity;
+            role = identity === localId ? "user" : "agent";
+          }
+
+          // Dedupe: skip if the same (role, text) was added in the last few seconds.
+          const key = `${role}::${text}`;
+          const now = Date.now();
+          const last = _recentTranscripts.get(key);
+          if (last && now - last < DEDUPE_WINDOW_MS) return;
+          _recentTranscripts.set(key, now);
+
+          // GC old entries
+          for (const [k, ts] of _recentTranscripts) {
+            if (now - ts > DEDUPE_WINDOW_MS * 2) _recentTranscripts.delete(k);
+          }
+
+          addTranscript(text, role);
+        } catch (err) {
+          console.error("Transcription stream error:", err);
+        }
+      });
+
+      lkRoom.on(LivekitClient.RoomEvent.Disconnected, () => {
+        if (simMode) {
+          setStatus("Simulation ended");
+          clearActiveScenario();
+          simMode = false;
+        } else {
+          setStatus("Disconnected");
+          connectBtn.textContent = "Connect";
+          connectBtn.classList.remove("connected");
+        }
+        connected = false;
+        connectBtn.disabled = false;
+        room = null;
+      });
+    }
+
+    // ── Copilot mode (Connect button) ──────────────────────────────────────
+
+    async function toggleConnect() {
+      if (connected) {
+        await disconnectRoom();
+      } else {
+        await connectCopilot();
+      }
+    }
+
+    async function connectCopilot() {
+      // Stop any running simulation first
+      if (simMode) await stopSimulation();
+
+      connectBtn.disabled = true;
+      setStatus("Connecting…");
+
+      try {
+        const res = await fetch("/token");
+        const { token, url } = await res.json();
+
+        room = new LivekitClient.Room({ adaptiveStream: true, dynacast: true });
+        attachRoomEvents(room, false);
+
+        await room.connect(url, token);
+        await room.localParticipant.setMicrophoneEnabled(true);
+
+        connected = true;
+        simMode = false;
+        connectBtn.textContent = "Disconnect";
+        connectBtn.classList.add("connected");
+        connectBtn.disabled = false;
+        setStatus("Connected", "connected");
+
+      } catch (err) {
+        console.error(err);
+        setStatus("Connection failed");
+        connectBtn.disabled = false;
+      }
+    }
+
+    async function disconnectRoom() {
+      if (room) {
+        await room.disconnect();
+        room = null;
+      }
+      connected = false;
+      simMode = false;
+      connectBtn.textContent = "Connect";
+      connectBtn.classList.remove("connected");
+    }
+
+    // ── Simulation mode ────────────────────────────────────────────────────
+
+    async function startScenario(index) {
+      // Tear down any existing connection
+      if (room) {
+        await room.disconnect();
+        room = null;
+        connected = false;
+      }
+
+      setScenarioBtnsDisabled(true);
+      setStatus("Starting simulation…");
+      addTranscript("", "system"); // spacer
+      clearActiveScenario();
+
+      let data;
+      try {
+        const res = await fetch("/start-scenario", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ scenario: index }),
+        });
+        data = await res.json();
+      } catch (err) {
+        console.error(err);
+        setStatus("Failed to start scenario");
+        setScenarioBtnsDisabled(false);
+        return;
+      }
+
+      // Connect browser to simulation room as a listener (no mic)
+      try {
+        const tokenRes = await fetch("/token?room=cs-simulation");
+        const { token, url } = await tokenRes.json();
+
+        room = new LivekitClient.Room({ adaptiveStream: true, dynacast: true });
+        attachRoomEvents(room, true);
+
+        await room.connect(url, token);
+        // No mic — observer only
+
+        connected = true;
+        simMode = true;
+        setActiveScenario(index);
+
+        const shortName = data.name.split(" — ")[0];
+        setStatus(`${shortName}`, "connected");
+        addTranscript(`▶ ${data.name}`, "system");
+        addTranscript(`Customer voice: ${data.voice}`, "system");
+
+        connectBtn.textContent = "Disconnect";
+        connectBtn.classList.add("connected");
+
+      } catch (err) {
+        console.error(err);
+        setStatus("Connection failed");
+        clearActiveScenario();
+      } finally {
+        setScenarioBtnsDisabled(false);
+      }
+    }
+
+    async function stopSimulation() {
+      setScenarioBtnsDisabled(true);
+      try {
+        await fetch("/stop-scenario", { method: "POST" });
+      } catch (_) {}
+      if (room) {
+        await room.disconnect();
+        room = null;
+      }
+      connected = false;
+      simMode = false;
+      clearActiveScenario();
+      connectBtn.textContent = "Connect";
+      connectBtn.classList.remove("connected");
+      setStatus("Ready");
+      setScenarioBtnsDisabled(false);
+    }
+  </script>
+</body>
+</html>
