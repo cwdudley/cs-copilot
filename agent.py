@@ -256,7 +256,7 @@ Voice style: concise, conversational, direct. No AI fluff. Partner, don't lectur
 When the customer mentions a specific pain or metric, ask for context you don't have (current numbers, deployment scale, rollout stage, renewal timing) before specific advice. Don't fabricate data.
 """
 
-SYSTEM_PROMPT = CSM_PERSONA + "\n\n" + csm_context()
+SYSTEM_PROMPT = SYSTEM_PROMPT_FULL + "\n\n" + csm_context()
 
 
 @function_tool
