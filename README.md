@@ -4,9 +4,19 @@ A voice Q&A copilot for Customer Success leaders, built on [LiveKit Agents](http
 
 Talk through renewals, account health, onboarding, expansion, and operational CS questions. The agent uses the full **SuccessCOACHING** methodology (TARO, lifecycle stages, health bands, churn tiers, renewals, expansion, and related frameworks) as its system prompt.
 
+## Bring your own keys
+
+This repo is **self-hosted** — there is no shared backend. Every developer runs the app locally with **their own** API credentials.
+
+1. Create a [LiveKit Cloud](https://cloud.livekit.io/) project → copy the **WebSocket URL**, **API Key**, and **API Secret** from Project Settings.
+2. Create a [Groq](https://console.groq.com/) account → create an **API key**.
+3. Paste all four values into `.env` (see step 2 below).
+
+The values in `.env.example` are placeholders only. Without real keys, the UI may load but **Connect** will fail.
+
 ## Quick start
 
-**Prerequisites:** Python 3.10+, a [LiveKit Cloud](https://cloud.livekit.io/) project, and a [Groq](https://console.groq.com/) API key.
+**Prerequisites:** Python 3.10+, a LiveKit Cloud project, and a Groq API key (see above).
 
 1. Clone and install:
 
@@ -24,12 +34,14 @@ Talk through renewals, account health, onboarding, expansion, and operational CS
    copy .env.example .env
    ```
 
-   Set these in `.env`:
+   Edit `.env` and replace every placeholder with your real credentials:
 
-   - `LIVEKIT_URL`
-   - `LIVEKIT_API_KEY`
-   - `LIVEKIT_API_SECRET`
-   - `GROQ_API_KEY`
+   ```env
+   LIVEKIT_URL=wss://YOUR-PROJECT.livekit.cloud
+   LIVEKIT_API_KEY=your_livekit_api_key
+   LIVEKIT_API_SECRET=your_livekit_api_secret
+   GROQ_API_KEY=your_groq_api_key
+   ```
 
 3. Run (one terminal):
 
@@ -94,3 +106,15 @@ On that branch you may need both `server.py` and `agent.py dev` depending on the
 ```
 
 This is **not required** for local development on `main` — `server.py` already runs the agent. Use the standalone worker if you deploy agents to LiveKit Cloud's worker pool instead of in-process.
+
+## Troubleshooting
+
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| `Connection failed` in the browser | Missing or placeholder `.env` values | Replace every value in `.env` with real LiveKit Cloud and Groq credentials — the template placeholders will not work |
+| `ModuleNotFoundError` on startup | Dependencies not installed | Run `pip install -r requirements.txt` inside your activated venv |
+| Page won't load at localhost:3000 | Server not running | Start `server.py` first; look for `SuccessCOACHING Q&A → http://localhost:3000` in the terminal |
+| Connected but agent never replies | Invalid Groq key or rate limit | Check the terminal for Groq errors; free-tier Groq may stall on long conversations with the full prompt |
+| `Copilot error` in terminal on startup | Bad LiveKit URL or API keys | Verify `LIVEKIT_URL` starts with `wss://` and key/secret match your LiveKit Cloud project |
+
+**This repo does not include shared API keys.** You must create your own [LiveKit Cloud](https://cloud.livekit.io/) project and [Groq](https://console.groq.com/) account before the app will connect.
