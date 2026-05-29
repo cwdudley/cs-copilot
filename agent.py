@@ -254,7 +254,10 @@ Voice style: concise, conversational, direct. No AI fluff. Partner, don't lectur
 When the customer mentions a specific pain or metric, ask for context you don't have (current numbers, deployment scale, rollout stage, renewal timing) before specific advice. Don't fabricate data.
 """
 
+from livekit_context import csm_context
+
 SYSTEM_PROMPT = SYSTEM_PROMPT_FULL
+LIVEKIT_SIMULATION_PROMPT = SYSTEM_PROMPT_FULL + "\n\n" + csm_context()
 
 
 @function_tool
@@ -278,6 +281,16 @@ class Assistant(Agent):
         turn_ctx.truncate(max_items=12)
 
 
+class LiveKitAssistant(Agent):
+    def __init__(self) -> None:
+        super().__init__(instructions=LIVEKIT_SIMULATION_PROMPT, tools=[search_web])
+
+    async def on_user_turn_completed(self, turn_ctx, new_message) -> None:
+        # Same sliding window, but with the LiveKit reference included for
+        # customer-simulation scenarios where product-specific grounding matters.
+        turn_ctx.truncate(max_items=12)
+
+
 async def entrypoint(ctx: agents.JobContext):
     logger.info("Agent connected to room: %s", ctx.room.name)
     await ctx.connect()
@@ -289,7 +302,7 @@ async def entrypoint(ctx: agents.JobContext):
         vad=silero.VAD.load(),
         turn_handling={
             "turn_detection": MultilingualModel(),
-            "endpointing": {"min_delay": 0.3},
+            "endpointing": {"min_delay": 0.8, "max_delay": 8.0},
         },
     )
 

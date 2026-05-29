@@ -18,7 +18,8 @@ import uuid
 from aiohttp import web
 from dotenv import load_dotenv
 from livekit import rtc
-from livekit.agents import AgentSession, RoomInputOptions
+from livekit.agents import AgentSession
+from livekit.agents.voice.room_io import AudioInputOptions, RoomOptions
 from livekit.agents.utils import http_context
 from livekit.api import AccessToken, VideoGrants
 from livekit.plugins import groq, silero
@@ -60,12 +61,26 @@ async def run_copilot() -> None:
             llm=groq.LLM(model="llama-3.3-70b-versatile"),
             tts=groq.TTS(model="canopylabs/orpheus-v1-english", voice="diana"),
             vad=silero.VAD.load(),
-            turn_handling={"endpointing": {"min_delay": 0.3, "max_delay": 5.0}},
+            turn_handling={
+                # In-process mode does not use MultilingualModel turn detection,
+                # so keep endpointing tolerant of natural pauses between words.
+                "endpointing": {"min_delay": 1.2, "max_delay": 8.0},
+            },
         )
         await session.start(
             agent=Assistant(),
             room=room,
-            room_input_options=RoomInputOptions(close_on_disconnect=False),
+            room_options=RoomOptions(
+                audio_input=AudioInputOptions(
+                    # Keep early mic frames while the browser track settles.
+                    pre_connect_audio=True,
+                    pre_connect_audio_timeout=10.0,
+                ),
+                participant_kinds=[
+                    rtc.ParticipantKind.PARTICIPANT_KIND_STANDARD,
+                ],
+                close_on_disconnect=False,
+            ),
         )
 
         greeted = False
@@ -73,12 +88,36 @@ async def run_copilot() -> None:
         @room.on("participant_connected")
         def on_participant_connected(participant):
             nonlocal greeted
+            logger.info(
+                "Participant connected: identity=%s kind=%s",
+                participant.identity,
+                rtc.ParticipantKind.Name(participant.kind),
+            )
             if (
                 participant.kind == rtc.ParticipantKind.PARTICIPANT_KIND_STANDARD
                 and not greeted
             ):
                 greeted = True
                 asyncio.ensure_future(session.say("Hey, what can I help you with?"))
+
+        @room.on("track_published")
+        def on_track_published(publication, participant):
+            logger.info(
+                "Track published: participant=%s source=%s kind=%s muted=%s",
+                participant.identity,
+                rtc.TrackSource.Name(publication.source),
+                publication.kind,
+                publication.muted,
+            )
+
+        @room.on("track_subscribed")
+        def on_track_subscribed(track, publication, participant):
+            logger.info(
+                "Track subscribed: participant=%s source=%s kind=%s",
+                participant.identity,
+                rtc.TrackSource.Name(publication.source),
+                track.kind,
+            )
 
         @room.on("participant_disconnected")
         def on_participant_disconnected(participant):
