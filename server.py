@@ -185,5 +185,5 @@ app.router.add_get("/", handle_index)
 app.router.add_get("/token", handle_token)
 
 if __name__ == "__main__":
-    print(f"SuccessCOACHING Q&A → http://localhost:{PORT}")
+    print(f"SuccessCOACHING Q&A: http://localhost:{PORT}")
     web.run_app(app, host="localhost", port=PORT, print=None)
