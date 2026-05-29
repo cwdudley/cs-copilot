@@ -1,22 +1,20 @@
 """
 SuccessCOACHING Q&A web server.
 
-Serves the browser frontend AND runs the CS copilot agent in-process —
+Serves the browser frontend AND runs the CS copilot agent in-process:
 one terminal only. No simulation, no scenario buttons.
 
 Routes
 ------
-GET  /        → index.html
-GET  /token   → LiveKit JWT (?room= defaults to cs-copilot)
+GET  /        -> index.html
+GET  /token   -> LiveKit JWT (?room= defaults to cs-copilot)
 """
 
 import asyncio
 import logging
-import os
 import uuid
 
 from aiohttp import web
-from dotenv import load_dotenv
 from livekit import rtc
 from livekit.agents import AgentSession
 from livekit.agents.voice.room_io import AudioInputOptions, RoomOptions, TextOutputOptions
@@ -25,13 +23,14 @@ from livekit.api import AccessToken, VideoGrants
 from livekit.plugins import groq, silero
 
 from agent import Assistant
+from config import get_settings
 
-load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("sc-server")
+settings = get_settings()
 
-COPILOT_ROOM = "cs-copilot"
-PORT = 3000
+COPILOT_ROOM = settings.room_name
+PORT = settings.port
 
 _copilot_task = None
 
@@ -51,7 +50,7 @@ async def run_copilot() -> None:
     try:
         room = rtc.Room()
         await room.connect(
-            os.getenv("LIVEKIT_URL"),
+            settings.livekit_url,
             _make_token("copilot", "CS Copilot", COPILOT_ROOM),
         )
         logger.info("Copilot connected to room: %s", COPILOT_ROOM)
@@ -157,7 +156,7 @@ async def handle_token(request):
     )
     return web.json_response({
         "token": token,
-        "url": os.getenv("LIVEKIT_URL"),
+        "url": settings.livekit_url,
         "room": room,
     })
 

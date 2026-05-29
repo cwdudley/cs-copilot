@@ -41,6 +41,8 @@ The values in `.env.example` are placeholders only. Without real keys, the UI ma
    LIVEKIT_API_KEY=your_livekit_api_key
    LIVEKIT_API_SECRET=your_livekit_api_secret
    GROQ_API_KEY=your_groq_api_key
+   ROOM_NAME=cs-copilot
+   PORT=3000
    ```
 
 3. Run (one terminal):
@@ -52,6 +54,12 @@ The values in `.env.example` are placeholders only. Without real keys, the UI ma
 4. Open http://localhost:3000, click **Connect**, and allow microphone access.
 
 The server serves the UI **and** runs the copilot agent in-process — no second terminal required.
+
+Optional sanity check before running the app:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\smoke_check.py
+```
 
 ## How it works
 
@@ -71,9 +79,10 @@ Browser (index.html)  ←→  LiveKit room (cs-copilot)  ←→  Copilot agent (
 |------|---------|
 | `index.html` | Browser UI — orb, status, transcript, Connect button |
 | `server.py` | Web server, token endpoint, in-process copilot agent |
-| `agent.py` | Agent definition, full SuccessCOACHING system prompt, web search tool |
-| `livekit_context.py` | Shared LiveKit knowledge loader (used by legacy sim code) |
-| `customer_agent.py` | Unused on `main`; customer personas for the sim branch |
+| `agent.py` | Agent definition, voice pipeline hooks, and web search tool |
+| `config.py` | Environment loading and startup validation |
+| `prompts/successcoaching.md` | Full SuccessCOACHING system prompt |
+| `experiments/` | Archived simulation and voice-probing experiments |
 | `.env.example` | Environment variable template |
 
 ## Branches
@@ -89,7 +98,7 @@ To try the sim version:
 git checkout simulated-attempt
 ```
 
-On that branch you may need both `server.py` and `agent.py dev` depending on the mode; see the UI on that branch for details.
+On that branch you may need both `server.py` and `agent.py dev` depending on the mode; see the UI on that branch for details. The `experiments/` folder on `main` preserves the exploratory files, but the supported app is the one-terminal Q&A flow.
 
 ## Notes
 

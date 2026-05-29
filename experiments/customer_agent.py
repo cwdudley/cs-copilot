@@ -5,12 +5,14 @@ Joins the same LiveKit room as the CS copilot and plays the role of a customer
 modeled on one of four common LiveKit customer archetypes.
 
 Usage:
+  This is archived experiment code, not the supported main app.
+
   Run the CS copilot first:
     .venv/Scripts/python.exe agent.py connect --room cs-simulation
 
   Then run this script with an optional scenario number (0-3):
-    .venv/Scripts/python.exe customer_agent.py          # scenario 0
-    .venv/Scripts/python.exe customer_agent.py 2        # scenario 2
+    .venv/Scripts/python.exe experiments/customer_agent.py          # scenario 0
+    .venv/Scripts/python.exe experiments/customer_agent.py 2        # scenario 2
 """
 
 import asyncio

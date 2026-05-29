@@ -1,7 +1,7 @@
-livekit-agents>=1.0
-livekit-plugins-groq
-livekit-plugins-silero
-livekit-plugins-turn-detector
-aiohttp
-python-dotenv
-duckduckgo-search
+livekit-agents==1.5.12
+livekit-plugins-groq==1.5.11
+livekit-plugins-silero==1.5.11
+livekit-plugins-turn-detector==1.5.12
+aiohttp==3.13.5
+python-dotenv==1.2.2
+duckduckgo-search==8.1.1
