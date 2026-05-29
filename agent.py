@@ -1,6 +1,6 @@
 import logging
 from dotenv import load_dotenv
-from livekit import agents
+from livekit import agents, rtc
 from livekit.agents import Agent, AgentSession, RoomInputOptions, function_tool
 from livekit.plugins import groq, silero
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
@@ -274,6 +274,18 @@ class Assistant(Agent):
     def __init__(self) -> None:
         super().__init__(instructions=SYSTEM_PROMPT, tools=[search_web])
 
+    async def tts_node(self, text, model_settings):
+        first_frame = True
+        async for frame in Agent.default.tts_node(self, text, model_settings):
+            if first_frame:
+                first_frame = False
+                yield rtc.AudioFrame.create(
+                    frame.sample_rate,
+                    frame.num_channels,
+                    int(frame.sample_rate * 0.25),
+                )
+            yield frame
+
     async def on_user_turn_completed(self, turn_ctx, new_message) -> None:
         # Sliding window: keep only the last N messages each turn. The system
         # prompt is preserved automatically. This keeps per-call token usage
@@ -284,6 +296,18 @@ class Assistant(Agent):
 class LiveKitAssistant(Agent):
     def __init__(self) -> None:
         super().__init__(instructions=LIVEKIT_SIMULATION_PROMPT, tools=[search_web])
+
+    async def tts_node(self, text, model_settings):
+        first_frame = True
+        async for frame in Agent.default.tts_node(self, text, model_settings):
+            if first_frame:
+                first_frame = False
+                yield rtc.AudioFrame.create(
+                    frame.sample_rate,
+                    frame.num_channels,
+                    int(frame.sample_rate * 0.25),
+                )
+            yield frame
 
     async def on_user_turn_completed(self, turn_ctx, new_message) -> None:
         # Same sliding window, but with the LiveKit reference included for

@@ -19,7 +19,7 @@ from aiohttp import web
 from dotenv import load_dotenv
 from livekit import rtc
 from livekit.agents import AgentSession
-from livekit.agents.voice.room_io import AudioInputOptions, RoomOptions
+from livekit.agents.voice.room_io import AudioInputOptions, RoomOptions, TextOutputOptions
 from livekit.agents.utils import http_context
 from livekit.api import AccessToken, VideoGrants
 from livekit.plugins import groq, silero
@@ -76,6 +76,10 @@ async def run_copilot() -> None:
                     pre_connect_audio=True,
                     pre_connect_audio_timeout=10.0,
                 ),
+                # Publish agent transcript from generated LLM text immediately,
+                # instead of waiting to synchronize transcript display to audio
+                # playout. User transcripts remain finalized by STT.
+                text_output=TextOutputOptions(sync_transcription=False),
                 participant_kinds=[
                     rtc.ParticipantKind.PARTICIPANT_KIND_STANDARD,
                 ],
