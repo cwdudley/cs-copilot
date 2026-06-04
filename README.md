@@ -1,6 +1,6 @@
 # SuccessCOACHING Voice Copilot
 
-A voice Q&A copilot for Customer Success leaders, built on [LiveKit Agents](https://docs.livekit.io/agents/), Groq (STT / LLM / TTS), and a browser UI.
+A voice Q&A copilot for Customer Success reps, built on [LiveKit Agents](https://docs.livekit.io/agents/), Groq (STT / LLM / TTS), and a browser UI.
 
 Talk through renewals, account health, onboarding, expansion, and operational CS questions. The agent uses the full **SuccessCOACHING** methodology (TARO, lifecycle stages, health bands, churn tiers, renewals, expansion, and related frameworks) as its system prompt.
 
