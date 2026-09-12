@@ -42,7 +42,7 @@ Optional `.env` overrides: `ELEVENLABS_VOICE_ID`, `ELEVENLABS_TTS_MODEL`
 ## Why this exists
 
 The LiveKit build hit Groq's free-tier rate limit — 12,000 tokens per minute on
-`llama-3.3-70b-versatile`. The full SuccessCOACHING playbook was ~3,000 tokens
+`llama-3.3-70b-versatile`. The full SuccessCOACHING playbook was ~3,138 tokens
 and sat in the system prompt, so every single turn re-sent the entire
 methodology. Conversations died after two exchanges.
 
@@ -70,10 +70,22 @@ So this build splits along that seam:
 - **`coach/kb/*.md`** — the full framework corpus, uploaded as knowledge base
   documents and retrieved semantically when a question calls for them.
 
-Adding SPICED and MEDDPICC grew the methodology by roughly 2.5x. **The per-turn
-prompt cost did not change**, because the new material went into retrieval. That
-is the whole point — under the old architecture, expanding the methodology would
-have made the rate limit problem worse.
+The numbers are the argument:
+
+| | Before (LiveKit) | After (this branch) |
+|---|---|---|
+| Sent every turn | ~3,138 tokens | **~943 tokens** |
+| Total methodology | ~3,138 tokens | **~9,454 tokens** |
+
+Adding SPICED and MEDDPICC **tripled** the methodology while **cutting per-turn
+prompt cost by 69%**, because the new material went into retrieval rather than
+the prompt.
+
+That is the whole point. Under the old architecture these two goals were in
+direct conflict — every framework you added made the rate limit worse, so the
+only way to keep conversations alive was to know less. Splitting prompt from
+retrieval decouples them: the playbook can keep growing and the per-turn cost
+stays flat.
 
 ### What got deleted
 

@@ -1,25 +1,66 @@
-from pathlib import Path
+"""
+Pre-flight check for the ElevenLabs AM coach.
+
+Verifies the prompt and knowledge base are intact and the environment is
+configured, before spending an API call on provisioning.
+
+  .venv/Scripts/python.exe scripts/smoke_check.py
+"""
+
+import os
 import sys
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
 
-from config import get_settings
-from agent import SYSTEM_PROMPT
+# Documents under this size cannot be RAG-indexed and silently fall back to
+# being stuffed into the prompt — which defeats the point of the split.
+RAG_MIN_BYTES = 500
 
 
 def main() -> None:
-    settings = get_settings()
-    if not settings.livekit_url.startswith("wss://"):
-        raise RuntimeError("LIVEKIT_URL must start with wss://")
-    if len(SYSTEM_PROMPT) < 1000:
-        raise RuntimeError("SuccessCOACHING prompt did not load correctly")
+    load_dotenv(ROOT / ".env")
+    problems: list[str] = []
 
-    index_path = ROOT / "index.html"
-    if not index_path.exists():
-        raise RuntimeError("index.html is missing")
+    if not os.getenv("ELEVENLABS_API_KEY"):
+        problems.append("ELEVENLABS_API_KEY is not set (copy .env.example to .env)")
 
-    print("Smoke check passed: config, prompt, and UI assets are present.")
+    instructions = ROOT / "coach" / "instructions.md"
+    if not instructions.exists():
+        problems.append("coach/instructions.md is missing")
+    elif len(instructions.read_text(encoding="utf-8")) < 1000:
+        problems.append("coach/instructions.md looks truncated")
+
+    kb_dir = ROOT / "coach" / "kb"
+    docs = sorted(kb_dir.glob("*.md")) if kb_dir.exists() else []
+    if not docs:
+        problems.append("no knowledge base documents found in coach/kb/")
+
+    for doc in docs:
+        size = doc.stat().st_size
+        if size < RAG_MIN_BYTES:
+            problems.append(f"{doc.name} is {size}B, under the {RAG_MIN_BYTES}B RAG floor")
+
+    if not (ROOT / "index.html").exists():
+        problems.append("index.html is missing")
+
+    if problems:
+        print("Smoke check failed:\n")
+        for problem in problems:
+            print(f"  - {problem}")
+        sys.exit(1)
+
+    prompt_tokens = len(instructions.read_text(encoding="utf-8")) // 4
+    kb_tokens = sum(d.stat().st_size for d in docs) // 4
+
+    print("Smoke check passed.\n")
+    print(f"  Prompt:         ~{prompt_tokens:,} tokens  (sent every turn)")
+    print(f"  Knowledge base: ~{kb_tokens:,} tokens across {len(docs)} docs (retrieved on demand)")
+
+    if not os.getenv("ELEVENLABS_AGENT_ID"):
+        print("\n  No ELEVENLABS_AGENT_ID yet — run provision.py next.")
 
 
 if __name__ == "__main__":
