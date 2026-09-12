@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SuccessCOACHING</title>
-  <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+  <title>AM Coach</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,10 +15,8 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      overflow-y: auto;
     }
 
-    /* ── Header ───────────────────────────────────────────────────────────── */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -50,7 +47,6 @@
       color: #a1a1aa;
     }
 
-    /* ── Main view ────────────────────────────────────────────────────────── */
     .main-view {
       flex: 1;
       width: 100%;
@@ -90,14 +86,11 @@
       z-index: 1;
     }
 
-    /* ── Speaking states ──────────────────────────────────────────────────── */
     body.agent-speaking .orb {
       box-shadow: 0 0 60px rgba(99, 102, 241, 0.7), 0 0 100px rgba(99, 102, 241, 0.3);
       animation: pulse-agent 1.2s ease-in-out infinite;
     }
-    body.agent-speaking .orb-ring {
-      animation: expand-ring 1.8s ease-out infinite;
-    }
+    body.agent-speaking .orb-ring { animation: expand-ring 1.8s ease-out infinite; }
     body.agent-speaking .orb-ring-2 { animation-delay: 0.3s; }
     body.agent-speaking .orb-ring-3 { animation-delay: 0.6s; }
 
@@ -109,11 +102,11 @@
 
     @keyframes pulse-agent {
       0%, 100% { transform: scale(1); }
-      50%       { transform: scale(1.06); }
+      50%      { transform: scale(1.06); }
     }
     @keyframes pulse-user {
       0%, 100% { transform: scale(1); }
-      50%       { transform: scale(1.04); }
+      50%      { transform: scale(1.04); }
     }
     @keyframes expand-ring {
       0%   { opacity: 0.4; transform: scale(1); }
@@ -126,18 +119,21 @@
       color: #71717a;
       letter-spacing: 0.02em;
       min-height: 22px;
+      text-align: center;
+      padding: 0 24px;
       transition: color 0.3s;
     }
     body.agent-speaking .status { color: #818cf8; }
     body.user-speaking  .status { color: #22c55e; }
     body.connected      .status { color: #a1a1aa; }
+    .status.error       { color: #ef4444; }
 
     /* ── Transcript ───────────────────────────────────────────────────────── */
     .transcript {
       width: 100%;
       max-width: 560px;
       min-height: 60px;
-      max-height: 200px;
+      max-height: 220px;
       overflow-y: auto;
       padding: 0 24px;
       display: flex;
@@ -155,7 +151,6 @@
     }
     .transcript-line.agent  { color: #a1a1aa; }
     .transcript-line.user   { color: #6366f1; text-align: right; }
-    .transcript-line.system { color: #3f3f46; font-style: italic; }
     .transcript-line.latest { color: #e4e4e7; }
 
     /* ── Connect button ───────────────────────────────────────────────────── */
@@ -169,14 +164,12 @@
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
-      letter-spacing: 0.01em;
     }
-    .connect-btn:hover             { background: #27272a; color: #fafafa; }
-    .connect-btn.connected         { border-color: #dc2626; color: #ef4444; }
-    .connect-btn.connected:hover   { background: #1c0a0a; }
-    .connect-btn:disabled          { opacity: 0.4; cursor: not-allowed; }
+    .connect-btn:hover           { background: #27272a; color: #fafafa; }
+    .connect-btn.connected       { border-color: #dc2626; color: #ef4444; }
+    .connect-btn.connected:hover { background: #1c0a0a; }
+    .connect-btn:disabled        { opacity: 0.4; cursor: not-allowed; }
 
-    /* ── Footer ───────────────────────────────────────────────────────────── */
     footer {
       font-size: 12px;
       color: #27272a;
@@ -188,11 +181,10 @@
 
   <header>
     <div class="logo-dot" id="statusDot"></div>
-    <h1>SuccessCOACHING</h1>
+    <h1>Account Management Coach</h1>
   </header>
 
   <div class="main-view">
-
     <div class="orb-wrapper">
       <div class="orb-ring orb-ring-1"></div>
       <div class="orb-ring orb-ring-2"></div>
@@ -204,14 +196,15 @@
 
     <div class="transcript" id="transcript"></div>
 
-    <button class="connect-btn" id="connectBtn" onclick="toggleConnect()">Connect</button>
-
+    <button class="connect-btn" id="connectBtn">Connect</button>
   </div>
 
-  <footer>Powered by SuccessCOACHING · Groq</footer>
+  <footer>SuccessCOACHING · SPICED · MEDDPICC</footer>
 
-  <script>
-    let room = null;
+  <script type="module">
+    import { Conversation } from "https://cdn.jsdelivr.net/npm/@elevenlabs/client@latest/+esm";
+
+    let conversation = null;
     let connected = false;
 
     const statusEl     = document.getElementById("status");
@@ -219,126 +212,130 @@
     const transcriptEl = document.getElementById("transcript");
     const statusDot    = document.getElementById("statusDot");
 
-    // ── UI helpers ─────────────────────────────────────────────────────────
-
     function setStatus(text, state) {
       statusEl.textContent = text;
-      document.body.className = state || "";
+      statusEl.classList.toggle("error", state === "error");
+      document.body.className = state && state !== "error" ? state : "";
       statusDot.style.background =
         state === "agent-speaking" ? "#818cf8"
         : state === "user-speaking" ? "#22c55e"
         : state === "connected"     ? "#22c55e"
+        : state === "error"         ? "#ef4444"
         : "#3f3f46";
     }
 
     function addTranscript(text, role) {
+      if (!text) return;
       transcriptEl.querySelectorAll(".latest").forEach(el => el.classList.remove("latest"));
       const line = document.createElement("div");
       line.className = `transcript-line ${role} latest`;
       line.textContent = text;
       transcriptEl.appendChild(line);
       transcriptEl.scrollTop = transcriptEl.scrollHeight;
-      while (transcriptEl.children.length > 30) transcriptEl.removeChild(transcriptEl.firstChild);
+      while (transcriptEl.children.length > 40) transcriptEl.removeChild(transcriptEl.firstChild);
     }
 
-    // ── Room ───────────────────────────────────────────────────────────────
-
-    async function toggleConnect() {
-      if (connected) {
-        await disconnect();
-      } else {
-        await connect();
-      }
+    // The onMessage payload shape isn't pinned in the docs, so read it defensively.
+    function readMessage(payload) {
+      if (typeof payload === "string") return { text: payload, role: "agent" };
+      const text = payload?.message ?? payload?.text ?? "";
+      const source = payload?.source ?? payload?.role ?? "ai";
+      const role = (source === "user" || source === "human") ? "user" : "agent";
+      return { text, role };
     }
 
     async function connect() {
       connectBtn.disabled = true;
-      setStatus("Connecting…");
+      setStatus("Requesting microphone…");
 
       try {
-        const res = await fetch("/token");
-        const { token, url } = await res.json();
-
-        room = new LivekitClient.Room({ adaptiveStream: true, dynacast: true });
-
-        room.on(LivekitClient.RoomEvent.TrackSubscribed, (track) => {
-          if (track.kind === LivekitClient.Track.Kind.Audio) {
-            const el = track.attach();
-            el.style.display = "none";
-            document.body.appendChild(el);
-          }
-        });
-
-        room.on(LivekitClient.RoomEvent.ActiveSpeakersChanged, (speakers) => {
-          const localId = room.localParticipant.identity;
-          const agentSpeaking = speakers.some(s => s.identity !== localId);
-          const userSpeaking  = speakers.some(s => s.identity === localId);
-          if      (agentSpeaking) setStatus("Speaking…", "agent-speaking");
-          else if (userSpeaking)  setStatus("Listening…", "user-speaking");
-          else                    setStatus("Connected", "connected");
-        });
-
-        // Transcription streams
-        const _recent = new Map();
-        const DEDUPE_MS = 4000;
-
-        room.registerTextStreamHandler("lk.transcription", async (reader, participantInfo) => {
-          try {
-            const text = (await reader.readAll() || "").trim();
-            if (!text) return;
-
-            const localId = room.localParticipant.identity;
-            const role = participantInfo?.identity === localId ? "user" : "agent";
-
-            const key = `${role}::${text}`;
-            const now = Date.now();
-            if (_recent.has(key) && now - _recent.get(key) < DEDUPE_MS) return;
-            _recent.set(key, now);
-            for (const [k, ts] of _recent) {
-              if (now - ts > DEDUPE_MS * 2) _recent.delete(k);
-            }
-
-            addTranscript(text, role);
-          } catch (err) {
-            console.error("Transcription stream error:", err);
-          }
-        });
-
-        room.on(LivekitClient.RoomEvent.Disconnected, () => {
-          setStatus("Disconnected");
-          connectBtn.textContent = "Connect";
-          connectBtn.classList.remove("connected");
-          connectBtn.disabled = false;
-          connected = false;
-          room = null;
-        });
-
-        await room.connect(url, token);
-        await room.localParticipant.setMicrophoneEnabled(true);
-
-        connected = true;
-        connectBtn.textContent = "Disconnect";
-        connectBtn.classList.add("connected");
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+      } catch {
+        setStatus("Microphone permission denied", "error");
         connectBtn.disabled = false;
-        setStatus("Connected", "connected");
+        return;
+      }
 
+      setStatus("Connecting…");
+
+      let signedUrl;
+      try {
+        const res = await fetch("/signed-url");
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Could not get a signed URL");
+        signedUrl = data.signed_url;
       } catch (err) {
         console.error(err);
-        setStatus("Connection failed");
+        setStatus(err.message || "Could not reach the server", "error");
+        connectBtn.disabled = false;
+        return;
+      }
+
+      try {
+        conversation = await Conversation.startSession({
+          signedUrl,
+          connectionType: "websocket",
+
+          onConnect: () => {
+            connected = true;
+            connectBtn.textContent = "Disconnect";
+            connectBtn.classList.add("connected");
+            connectBtn.disabled = false;
+            setStatus("Connected", "connected");
+          },
+
+          onDisconnect: () => {
+            connected = false;
+            conversation = null;
+            connectBtn.textContent = "Connect";
+            connectBtn.classList.remove("connected");
+            connectBtn.disabled = false;
+            setStatus("Ready");
+          },
+
+          onModeChange: (payload) => {
+            const mode = payload?.mode ?? payload;
+            if (mode === "speaking")      setStatus("Speaking…", "agent-speaking");
+            else if (mode === "listening") setStatus("Listening…", "user-speaking");
+            else                           setStatus("Connected", "connected");
+          },
+
+          onMessage: (payload) => {
+            const { text, role } = readMessage(payload);
+            addTranscript(text, role);
+          },
+
+          onError: (err) => {
+            console.error("Conversation error:", err);
+            setStatus(typeof err === "string" ? err : "Conversation error", "error");
+          },
+        });
+      } catch (err) {
+        console.error(err);
+        setStatus("Could not start the conversation", "error");
         connectBtn.disabled = false;
       }
     }
 
     async function disconnect() {
-      if (room) {
-        await room.disconnect();
-        room = null;
+      connectBtn.disabled = true;
+      try {
+        if (conversation) await conversation.endSession();
+      } catch (err) {
+        console.error(err);
       }
+      conversation = null;
       connected = false;
       connectBtn.textContent = "Connect";
       connectBtn.classList.remove("connected");
+      connectBtn.disabled = false;
       setStatus("Ready");
     }
+
+    connectBtn.addEventListener("click", () => {
+      if (connected) disconnect();
+      else connect();
+    });
   </script>
 </body>
 </html>

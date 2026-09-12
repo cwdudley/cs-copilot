@@ -1,129 +1,153 @@
-# SuccessCOACHING Voice Copilot
+# Account Management Coach
 
-A voice Q&A copilot for Customer Success leaders, built on [LiveKit Agents](https://docs.livekit.io/agents/), Groq (STT / LLM / TTS), and a browser UI.
+A voice coach for CS and account management leaders, built on ElevenLabs Agents.
+Grounded in the SuccessCOACHING methodology, plus SPICED for diagnosis and
+MEDDPICC for qualification.
 
-Talk through renewals, account health, onboarding, expansion, and operational CS questions. The agent uses the full **SuccessCOACHING** methodology (TARO, lifecycle stages, health bands, churn tiers, renewals, expansion, and related frameworks) as its system prompt.
+> This branch (`elevenlabs-am-coach`) is a rebuild of the LiveKit version on
+> `main`. See **Why this exists** below for the architectural argument.
 
-## Bring your own keys
+---
 
-This repo is **self-hosted** — there is no shared backend. Every developer runs the app locally with **their own** API credentials.
+## Running it
 
-1. Create a [LiveKit Cloud](https://cloud.livekit.io/) project → copy the **WebSocket URL**, **API Key**, and **API Secret** from Project Settings.
-2. Create a [Groq](https://console.groq.com/) account → create an **API key**.
-3. Paste all four values into `.env` (see step 2 below).
-
-The values in `.env.example` are placeholders only. Without real keys, the UI may load but **Connect** will fail.
-
-## Quick start
-
-**Prerequisites:** Python 3.10+, a LiveKit Cloud project, and a Groq API key (see above).
-
-1. Clone and install:
-
-   ```powershell
-   git clone https://github.com/cwdudley/cs-copilot.git
-   cd cs-copilot
-   python -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   pip install -r requirements.txt
-   ```
-
-2. Configure environment:
-
-   ```powershell
-   copy .env.example .env
-   ```
-
-   Edit `.env` and replace every placeholder with your real credentials:
-
-   ```env
-   LIVEKIT_URL=wss://YOUR-PROJECT.livekit.cloud
-   LIVEKIT_API_KEY=your_livekit_api_key
-   LIVEKIT_API_SECRET=your_livekit_api_secret
-   GROQ_API_KEY=your_groq_api_key
-   ROOM_NAME=cs-copilot
-   PORT=3000
-   ```
-
-3. Run (one terminal):
-
-   ```powershell
-   .\.venv\Scripts\python.exe server.py
-   ```
-
-4. Open http://localhost:3000, click **Connect**, and allow microphone access.
-
-The server serves the UI **and** runs the copilot agent in-process — no second terminal required.
-
-Optional sanity check before running the app:
-
-```powershell
-.\.venv\Scripts\python.exe scripts\smoke_check.py
+```bash
+pip install -r requirements.txt
 ```
 
-## How it works
+Add to `.env`:
 
 ```
-Browser (index.html)  ←→  LiveKit room (cs-copilot)  ←→  Copilot agent (server.py)
-     mic + audio              realtime WebRTC                    Groq STT → LLM → TTS
+ELEVENLABS_API_KEY=your_key_here
 ```
 
-- The browser fetches a JWT from `/token` and joins the `cs-copilot` room.
-- `server.py` connects the agent to the same room on startup.
-- When you connect, the copilot greets you and responds to voice input.
-- Transcripts appear in the UI via LiveKit's `lk.transcription` text stream.
+Provision the agent — uploads the knowledge base and creates the agent, then
+writes `ELEVENLABS_AGENT_ID` back to `.env`:
 
-## Project layout
-
-| File | Purpose |
-|------|---------|
-| `index.html` | Browser UI — orb, status, transcript, Connect button |
-| `server.py` | Web server, token endpoint, in-process copilot agent |
-| `agent.py` | Agent definition, voice pipeline hooks, and web search tool |
-| `config.py` | Environment loading and startup validation |
-| `prompts/successcoaching.md` | Full SuccessCOACHING system prompt |
-| `experiments/` | Archived simulation and voice-probing experiments |
-| `.env.example` | Environment variable template |
-
-## Branches
-
-| Branch | Description |
-|--------|-------------|
-| **`main`** | SuccessCOACHING voice Q&A (this README) |
-| **`simulated-attempt`** | Archived experiment — AI-vs-AI customer simulations with four scenario personas. Kept for reference; not actively maintained. |
-
-To try the sim version:
-
-```powershell
-git checkout simulated-attempt
+```bash
+python provision.py
 ```
 
-On that branch you may need both `server.py` and `agent.py dev` depending on the mode; see the UI on that branch for details. The `experiments/` folder on `main` preserves the exploratory files, but the supported app is the one-terminal Q&A flow.
+Start the server and open <http://localhost:3000>:
 
-## Notes
-
-- **Groq rate limits:** The full SuccessCOACHING prompt is large (~2k+ tokens). On Groq's free tier you may hit per-minute token caps in longer conversations. Upgrading your Groq plan or trimming the prompt in `agent.py` helps if responses stall.
-- **Conversation memory:** The agent keeps a sliding window of the last 12 turns to control token usage per request.
-- **Web search:** The agent can call DuckDuckGo via the `search_web` tool for ad-hoc lookups during a session.
-
-## Optional: standalone agent worker
-
-`agent.py` can also run as a LiveKit Cloud worker (separate process):
-
-```powershell
-.\.venv\Scripts\python.exe agent.py dev
+```bash
+python server.py
 ```
 
-This is **not required** for local development on `main` — `server.py` already runs the agent. Use the standalone worker if you deploy agents to LiveKit Cloud's worker pool instead of in-process.
+Optional `.env` overrides: `ELEVENLABS_VOICE_ID`, `ELEVENLABS_TTS_MODEL`
+(default `eleven_flash_v2_5`), `ELEVENLABS_LLM` (default `claude-sonnet-4-5`).
 
-## Troubleshooting
+---
 
-| Symptom | Likely cause | Fix |
-|---------|--------------|-----|
-| `Connection failed` in the browser | Missing or placeholder `.env` values | Replace every value in `.env` with real LiveKit Cloud and Groq credentials — the template placeholders will not work |
-| `ModuleNotFoundError` on startup | Dependencies not installed | Run `pip install -r requirements.txt` inside your activated venv |
-| Page won't load at localhost:3000 | Server not running | Start `server.py` first; look for `SuccessCOACHING Q&A → http://localhost:3000` in the terminal |
-| Connected but agent never replies | Invalid Groq key or rate limit | Check the terminal for Groq errors; free-tier Groq may stall on long conversations with the full prompt |
-| `Copilot error` in terminal on startup | Bad LiveKit URL or API keys | Verify `LIVEKIT_URL` starts with `wss://` and key/secret match your LiveKit Cloud project |
+## Why this exists
 
-**This repo does not include shared API keys.** You must create your own [LiveKit Cloud](https://cloud.livekit.io/) project and [Groq](https://console.groq.com/) account before the app will connect.
+The LiveKit build hit Groq's free-tier rate limit — 12,000 tokens per minute on
+`llama-3.3-70b-versatile`. The full SuccessCOACHING playbook was ~3,000 tokens
+and sat in the system prompt, so every single turn re-sent the entire
+methodology. Conversations died after two exchanges.
+
+The fix at the time was to compact the playbook down to a ~700-token persona
+stub. TARO, the eight lifecycle stages, health bands, churn tiers, the seven
+guardrails — cut, so the conversation could survive.
+
+**That deleted the product.** The methodology *is* the coaching.
+
+The real problem was that the prompt fused two different kinds of content:
+
+| Kind | Example | Belongs in |
+|---|---|---|
+| Behavioral rules | "Never say an account will churn" | The prompt — must apply every turn |
+| Reference material | The MEDDPICC element definitions | Retrieval — needed only when relevant |
+
+Reference material has no business being re-sent on every turn. Asking about
+renewal risk shouldn't also pay to restate the onboarding milestone gates.
+
+So this build splits along that seam:
+
+- **`coach/instructions.md`** — persona, response style, the seven guardrails,
+  attribution rules, and a one-line index of each framework so the agent knows
+  what exists and when to reach for it. Small, flat, sent every turn.
+- **`coach/kb/*.md`** — the full framework corpus, uploaded as knowledge base
+  documents and retrieved semantically when a question calls for them.
+
+Adding SPICED and MEDDPICC grew the methodology by roughly 2.5x. **The per-turn
+prompt cost did not change**, because the new material went into retrieval. That
+is the whole point — under the old architecture, expanding the methodology would
+have made the rate limit problem worse.
+
+### What got deleted
+
+Everything below was pipeline plumbing on the LiveKit build. None of it made the
+coaching better:
+
+- `http_context.open()` to run plugins outside a worker job context
+- `RoomInputOptions(close_on_disconnect=False)` so the session survived an empty room
+- A missing `model_q8.onnx` turn-detector download
+- Brute-force probing the TTS API to discover valid voice names
+- Content-based transcript deduplication across two publishers
+- Migrating off a deprecated transcription event API
+- Prompt compaction and a `truncate(max_items=N)` sliding window
+
+STT, LLM orchestration, TTS, and turn-taking are now managed. `server.py` mints
+signed URLs and serves one static file.
+
+### Turn-taking is a product feature here
+
+Not a generic latency point. A CS leader reasoning about a live account pauses
+mid-thought constantly — *"we've got a renewal in… maybe 90 days, and the
+champion just left, so—"*. VAD timing forces a bad trade: interrupt them, or add
+dead air to every turn.
+
+The LiveKit build diagnosed this correctly and reached for the `MultilingualModel`
+semantic turn detector — which then only ran in worker mode, and whose model file
+wasn't downloaded. Right diagnosis, unreliable delivery. Managed semantic
+turn-taking is the difference between a coach and an interrogator.
+
+### The honest tradeoffs
+
+- **Less pipeline control.** No independent STT swap, no direct VAD tuning.
+- **Pricing shifts** from component costs to per-minute conversational.
+- **LLM routing** is theirs unless you wire a custom endpoint.
+- **Multi-agent simulation doesn't fit.** The `main` branch runs two agents
+  talking to each other in a shared LiveKit room, which needs agents as
+  first-class room peers (`participant_kinds=[STANDARD, AGENT]`). That is
+  LiveKit's design center, not this platform's. Rebuilding it here would mean
+  hand-rolling the room abstraction against the grain of a managed service.
+
+One-to-one coaching belongs here. Multi-agent realtime belongs on LiveKit. The
+split is real, which is why both branches still exist.
+
+---
+
+## Layout
+
+```
+coach/
+  instructions.md          persona, guardrails, framework index  (prompt)
+  kb/
+    01-taro.md             execution framework
+    02-lifecycle-and-value.md
+    03-health-and-churn.md
+    04-renewals.md
+    05-expansion.md
+    06-onboarding.md
+    07-cs-operations.md
+    08-revenue-operations.md
+    09-spiced.md           diagnosis framework
+    10-meddpicc.md         qualification framework
+    11-framework-selection.md   which to reach for, and when
+provision.py               uploads KB, creates the agent
+server.py                  signed-URL endpoint + static files
+index.html                 voice UI
+```
+
+### The three frameworks
+
+| Framework | Job | Answers |
+|---|---|---|
+| SPICED | Diagnosis | What is true about this account? |
+| MEDDPICC | Qualification | Is this revenue event real and winnable? |
+| TARO | Execution | What play do I run? |
+
+Diagnose, then qualify, then act. `11-framework-selection.md` covers routing and
+how gaps in one feed the next.
