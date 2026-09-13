@@ -77,7 +77,7 @@ The numbers are the argument:
 | Sent every turn | ~3,138 tokens | **~1,442 tokens** |
 | Total methodology | ~3,138 tokens | **~75,247 tokens** |
 
-Adding SPICED, MEDDPICC and a sourced corpus of 74 documents grew the
+Adding SPICED, MEDDPICC and a corpus of 72 sourced documents grew the
 methodology about **24x** while **cutting per-turn prompt cost by
 54%**, because the new material went into retrieval rather than the prompt.
 The prompt grew from its low point of ~943 tokens when routing and provenance
