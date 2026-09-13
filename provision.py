@@ -1,9 +1,10 @@
 """
 Provision the AM coach on ElevenLabs Agents.
 
-Uploads every markdown file in coach/kb/ as a knowledge base document, then
-creates (or updates) an agent whose instructions come from coach/instructions.md
-and whose framework detail is retrieved from the knowledge base via RAG.
+Uploads every markdown file in coach/kb/ and the sourced methodology corpus in
+knowledge/ as knowledge base documents, then creates (or updates) an agent whose
+instructions come from coach/instructions.md and whose framework detail is
+retrieved from the knowledge base via RAG.
 
 This is the architectural point of the branch: behavioral rules live in the
 prompt, reference material lives in retrieval. The prompt stays small and flat
@@ -19,6 +20,7 @@ Requires ELEVENLABS_API_KEY in .env. Writes ELEVENLABS_AGENT_ID back to .env.
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -34,6 +36,7 @@ ROOT = Path(__file__).parent
 ENV_PATH = ROOT / ".env"
 INSTRUCTIONS_PATH = ROOT / "coach" / "instructions.md"
 KB_DIR = ROOT / "coach" / "kb"
+KNOWLEDGE_DIR = ROOT / "knowledge"
 
 AGENT_NAME = "Account Management Coach"
 
@@ -60,11 +63,29 @@ def _post(path: str, payload: dict) -> dict:
     return resp.json()
 
 
+def kb_documents() -> list[Path]:
+    """Coach playbook docs plus the sourced methodology corpus."""
+    return sorted(KB_DIR.glob("*.md")) + sorted(KNOWLEDGE_DIR.rglob("*.md"))
+
+
+def _doc_name(path: Path, text: str) -> str:
+    # Sourced corpus docs carry frontmatter; name them by org and title so
+    # retrieved chunks stay attributable. Coach docs fall back to the filename.
+    title = re.search(r'^source_title:\s*"?(.+?)"?\s*$', text, re.MULTILINE)
+    org = re.search(r'^source_org:\s*"?(.+?)"?\s*$', text, re.MULTILINE)
+    if title and org:
+        return f"{org.group(1)}: {title.group(1)}"
+    if path.name == "INDEX.md":
+        return "Sales Methodology Corpus Index"
+    # "04-renewals.md" -> "Renewals"
+    return path.stem.split("-", 1)[-1].replace("-", " ").title()
+
+
 def upload_knowledge_base() -> list[dict]:
-    """Upload each coach/kb/*.md as a text document. Returns knowledge_base entries."""
-    docs = sorted(KB_DIR.glob("*.md"))
+    """Upload every knowledge document as text. Returns knowledge_base entries."""
+    docs = kb_documents()
     if not docs:
-        sys.exit(f"No markdown files found in {KB_DIR}")
+        sys.exit(f"No markdown files found in {KB_DIR} or {KNOWLEDGE_DIR}")
 
     entries = []
     print(f"Uploading {len(docs)} knowledge base documents...")
@@ -77,8 +98,7 @@ def upload_knowledge_base() -> list[dict]:
         if len(text.encode("utf-8")) < 500:
             print(f"  ! {path.name} is under 500 bytes and will not be indexed")
 
-        # Human-readable name: "04-renewals.md" -> "Renewals"
-        name = path.stem.split("-", 1)[-1].replace("-", " ").title()
+        name = _doc_name(path, text)
 
         result = _post("/convai/knowledge-base/text", {"text": text, "name": name})
         entries.append({"type": "text", "name": name, "id": result["id"]})
@@ -153,7 +173,7 @@ def main() -> None:
     set_key(str(ENV_PATH), "ELEVENLABS_AGENT_ID", agent_id)
 
     instructions_tokens = len(INSTRUCTIONS_PATH.read_text(encoding="utf-8")) // 4
-    kb_chars = sum(p.stat().st_size for p in KB_DIR.glob("*.md"))
+    kb_chars = sum(p.stat().st_size for p in kb_documents())
 
     print(f"\nAgent created: {agent_id}")
     print("Saved ELEVENLABS_AGENT_ID to .env\n")

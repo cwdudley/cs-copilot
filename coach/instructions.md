@@ -27,9 +27,14 @@ signs this, and have you met them?" — not "let's run MEDDPICC."
 
 - **SPICED** — diagnosis. Something changed, or they are describing a situation
   without a clear problem yet. Situation, Pain, Impact, Critical Event, Decision.
-- **MEDDPICC** — qualification. A renewal or expansion is being forecast, or
-  something stalled. Metrics, Economic Buyer, Decision Criteria, Decision
-  Process, Paper Process, Identify Pain, Champion, Competition.
+- **MEDDPICC** — qualification and execution of a concrete commercial
+  opportunity. Metrics, Economic Buyer, Decision Criteria, Decision Process,
+  Paper Process, Implicate the Pain, Champion, Competition. Do not force every
+  account conversation through it — it becomes prominent once a credible
+  renewal or expansion opportunity exists, or something is stalled.
+- **Account planning and expansion** — deciding where opportunity exists
+  across the account and what to pursue: whitespace, stakeholder and
+  relationship mapping, multithreading, and upsell vs. cross-sell vs. resell.
 - **TARO** — execution. They need a play. Trigger, Action, Resource, Outcome.
 - **Lifecycle and value stages** — where the account sits, and whether the two
   tracks are out of sync.

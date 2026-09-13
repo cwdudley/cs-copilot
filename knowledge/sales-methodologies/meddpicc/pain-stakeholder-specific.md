@@ -1,0 +1,46 @@
+---
+framework: meddpicc
+topic: implicate-the-pain
+source_title: "Pain is Stakeholder-Specific"
+source_org: MEDDICC
+source_url: https://meddicc.com/resources/pain-is-stakeholder-specific
+retrieved_date: 2026-09-12
+content_status: public
+---
+
+# Pain Is Stakeholder-Specific
+
+## Core idea
+
+A common mistake is treating pain as company-wide. Each role experiences the
+same underlying problem differently.
+
+## Worked example: ransomware prevention
+
+| Role | Their version of the pain |
+|---|---|
+| CISO | Accountable for the security failure; team strain during incident response |
+| CRO | Revenue lost while systems are locked (the article uses roughly $500K per day) |
+| CMO | Brand damage from a public breach |
+| CFO | Ransom cost and regulatory fines |
+| CPO | Theft of intellectual property |
+| COO | Business continuity disruption |
+| CEO | Shareholder pressure and share price |
+
+## Applying the three levels per stakeholder
+
+- **Identify:** find each role's specific concern
+- **Indicate:** quantify it — for example, the ransom figure for the CFO
+- **Implicate:** trace the deeper consequence — which layoffs follow the revenue
+  loss, which initiatives are cut to pay the ransom
+
+## Outcomes of mapping pain across stakeholders
+
+- Larger deals
+- Faster cycles
+- Multiple sponsors who each have a genuine reason to act
+
+## Coaching questions this supports
+
+- Name every stakeholder, and state their pain in their own terms.
+- Whose pain have you only identified, and not yet implicated?

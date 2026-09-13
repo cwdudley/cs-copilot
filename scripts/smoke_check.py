@@ -38,6 +38,18 @@ def main() -> None:
     if not docs:
         problems.append("no knowledge base documents found in coach/kb/")
 
+    # Sourced methodology corpus: every source doc must stay attributable.
+    corpus = sorted((ROOT / "knowledge").rglob("*.md"))
+    required = ("framework", "topic", "source_url", "source_title", "source_org", "retrieved_date")
+    for doc in corpus:
+        if doc.name == "INDEX.md":
+            continue
+        head = doc.read_text(encoding="utf-8")[:1500]
+        missing = [k for k in required if f"\n{k}:" not in head]
+        if missing:
+            problems.append(f"{doc.relative_to(ROOT)} missing metadata: {', '.join(missing)}")
+    docs += corpus
+
     for doc in docs:
         size = doc.stat().st_size
         if size < RAG_MIN_BYTES:
