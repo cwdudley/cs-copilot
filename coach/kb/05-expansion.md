@@ -1,3 +1,23 @@
+---
+framework: successcoaching
+topic: expansion
+source_title: 'SuccessCOACHING playbook: Expansion'
+source_org: SuccessCOACHING (user-provided)
+source_authority: User-provided SuccessCOACHING playbook (prompts/successcoaching.md on the main branch)
+source_type: canonical
+priority: 1
+first_party_for:
+- successcoaching
+framework_version: as provided (undated)
+public_url: none (not publicly published)
+source_url: none (not publicly published)
+published_date: unknown
+date_basis: not recorded in the playbook
+retrieved_date: not applicable
+license: unknown
+reproduction_status: restructured_user_provided
+content_status: Restructured from the user-provided playbook. Headings ending in (model note), and some interpretive commentary within sections, are project-authored and rank as secondary.
+---
 # Expansion
 
 ## The qualification gate
@@ -11,7 +31,7 @@ Before both exist, it is an early signal — not pipeline. Tag it
 `[early signal — not yet qualified]` and exclude it from NRR.
 
 This gate is MEDDPICC's Economic Buyer plus Decision Process, applied to
-expansion. Skipping it is the most common cause of inflated expansion forecasts.
+expansion. Skipping it is a common cause of inflated expansion forecasts.
 
 ---
 
@@ -25,8 +45,8 @@ All of the following:
 - Renewal is 90–180 days away
 - A QBR has surfaced documented success
 
-That last one matters most — expansion without documented Layer 2 value evidence
-is asking for more budget on the strength of a promise.
+That last one carries a lot of weight — expansion without documented Layer 2
+value evidence is asking for more budget on the strength of a promise.
 
 ## When not to pursue expansion
 
@@ -66,14 +86,14 @@ reason to work adoption first.
 
 ---
 
-## Qualifying the expansion
+## Qualifying the expansion (model note)
 
-Once a signal is strong, qualify with MEDDPICC before forecasting. The elements
-that most often turn out hollow on expansion:
+Once a signal is strong, qualify with MEDDPICC before forecasting. Elements that
+often turn out hollow on expansion:
 
 - **Metrics** — the customer needs their own model, not yours
 - **Critical Event** (SPICED) — without one, expansion stalls indefinitely. This
-  is the single most common reason expansion slips quarter to quarter.
+  is a common reason expansion slips quarter to quarter.
 - **Economic Buyer** — expansion frequently crosses into a budget the champion
   does not control
 

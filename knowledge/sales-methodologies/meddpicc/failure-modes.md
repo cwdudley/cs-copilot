@@ -1,16 +1,29 @@
 ---
 framework: meddpicc
 topic: failure-modes
-source_title: "MEDMEN: Why MEDDPICC Fails in Your Team (It's Not What You Think)"
+source_title: 'MEDMEN: Why MEDDPICC Fails in Your Team (It''s Not What You Think)'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC; two merged articles use MEDDIC naming
+public_url: https://meddicc.com/meddicc-media/medmen-why-meddpicc-fails-in-your-team-its-not-what-you-think
 source_url: https://meddicc.com/meddicc-media/medmen-why-meddpicc-fails-in-your-team-its-not-what-you-think
 also_covers:
-  - title: "MEDDIC is not a Checklist"
-    url: https://meddicc.com/resources/meddic-is-not-a-checklist
-  - title: "MEDMEN: MEDDIC Isn't One and Done"
-    url: https://meddicc.com/resources/medmen-meddic-isnt-one-and-done
-speakers: [Andy Whyte, Pim Roelofsen]
-retrieved_date: 2026-09-12
+- title: MEDDIC is not a Checklist
+  url: https://meddicc.com/resources/meddic-is-not-a-checklist
+- title: 'MEDMEN: MEDDIC Isn''t One and Done'
+  url: https://meddicc.com/resources/medmen-meddic-isnt-one-and-done
+speakers:
+- Andy Whyte
+- Pim Roelofsen
+published_date: '2026-05-17'
+date_basis: date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 note: Three overlapping MEDDICC pieces on how MEDDPICC goes wrong, deduplicated into one document.
 ---
@@ -70,7 +83,7 @@ sliding scale that decays without practice. Sustained adoption means continually
 applying the framework across the three domains of **Value, Stakeholders and
 Process**, which also reveals new applications over time.
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - What is the biggest gap in this deal, stated first?
 - Which element was green last month and might not be now?

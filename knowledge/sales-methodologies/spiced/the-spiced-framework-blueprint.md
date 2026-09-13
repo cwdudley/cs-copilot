@@ -1,10 +1,22 @@
 ---
 framework: spiced
 topic: overview
-source_title: "The SPICED Framework (Blueprint)"
+source_title: The SPICED Framework (Blueprint)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: SPICED blueprint (2022)
+public_url: https://winningbydesign.com/resources/blueprints/the-spiced-framework/
 source_url: https://winningbydesign.com/resources/blueprints/the-spiced-framework/
-retrieved_date: 2026-09-12
+published_date: '2022-04-15'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_partial
 content_status: partial — full 5-page PDF is gated behind a form; only the public summary and key takeaways were used
 ---
 

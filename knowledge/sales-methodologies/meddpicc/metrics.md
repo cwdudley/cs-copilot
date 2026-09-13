@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: metrics
-source_title: "What are MEDDPICC Metrics?"
+source_title: What are MEDDPICC Metrics?
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: canonical
+priority: 1
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/what-is-meddpicc/metrics
 source_url: https://meddicc.com/what-is-meddpicc/metrics
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: no date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 

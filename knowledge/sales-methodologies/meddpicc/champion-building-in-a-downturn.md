@@ -1,11 +1,24 @@
 ---
 framework: meddpicc
 topic: champion
-source_title: "Key Takeaways: Champion Building During a Downturn"
+source_title: 'Key Takeaways: Champion Building During a Downturn'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/champion-building-takeaways
 source_url: https://meddicc.com/resources/champion-building-takeaways
-speakers: [Richard Dufty, Nick Reva]
-retrieved_date: 2026-09-12
+speakers:
+- Richard Dufty
+- Nick Reva
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -41,7 +54,7 @@ warranties, or proof-of-value elements so advocating for you is safer.
 **Apply MEDDPICC continuously** — before, during and after proof of value,
 through to go-live.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 The risk-reduction and referral tactics apply to expansions, where the Champion
 is staking credibility already earned on the first purchase.

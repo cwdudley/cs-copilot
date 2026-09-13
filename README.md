@@ -74,12 +74,14 @@ The numbers are the argument:
 
 | | Before (LiveKit) | After (this branch) |
 |---|---|---|
-| Sent every turn | ~3,138 tokens | **~943 tokens** |
-| Total methodology | ~3,138 tokens | **~9,454 tokens** |
+| Sent every turn | ~3,138 tokens | **~1,442 tokens** |
+| Total methodology | ~3,138 tokens | **~75,247 tokens** |
 
-Adding SPICED and MEDDPICC **tripled** the methodology while **cutting per-turn
-prompt cost by 69%**, because the new material went into retrieval rather than
-the prompt.
+Adding SPICED, MEDDPICC and a sourced corpus of 74 documents grew the
+methodology about **24x** while **cutting per-turn prompt cost by
+54%**, because the new material went into retrieval rather than the prompt.
+The prompt grew from its low point of ~943 tokens when routing and provenance
+rules were added; those must apply every turn, so they belong there.
 
 That is the whole point. Under the old architecture these two goals were in
 direct conflict — every framework you added made the rate limit worse, so the
@@ -148,6 +150,9 @@ coach/
     09-spiced.md           diagnosis framework
     10-meddpicc.md         qualification framework
     11-framework-selection.md   which to reach for, and when
+knowledge/
+  sales-methodologies/     sourced MEDDPICC, SPICED and AM corpus;
+                           INDEX.md (provenance, conflicts), TERMINOLOGY.md
 provision.py               uploads KB, creates the agent
 server.py                  signed-URL endpoint + static files
 index.html                 voice UI
@@ -161,5 +166,8 @@ index.html                 voice UI
 | MEDDPICC | Qualification | Is this revenue event real and winnable? |
 | TARO | Execution | What play do I run? |
 
-Diagnose, then qualify, then act. `11-framework-selection.md` covers routing and
-how gaps in one feed the next.
+SPICED is kept as running account state and invoked when understanding a
+problem, change, or opportunity; MEDDPICC becomes prominent once a credible
+renewal or expansion opportunity exists. `11-framework-selection.md` covers
+routing, and `knowledge/sales-methodologies/INDEX.md` covers the sourced
+corpus, its provenance, and cross-framework terminology.

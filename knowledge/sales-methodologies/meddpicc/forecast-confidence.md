@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: deal-inspection
-source_title: "Achieving Forecast Confidence with MEDDICC"
+source_title: Achieving Forecast Confidence with MEDDICC
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDICC (naming used in source title)
+public_url: https://meddicc.com/resources/achieving-forecast-confidence-with-meddicc
 source_url: https://meddicc.com/resources/achieving-forecast-confidence-with-meddicc
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -38,7 +49,7 @@ implementation. This is a vendor-reported case.
 Forecast accuracy is a **leading indicator** of a healthy sales process, not just
 a reporting output.
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - For each commit deal: is the Champion tested, and is the Paper Process mapped?
 - What weakness in this forecast has not been said out loud yet?

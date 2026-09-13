@@ -1,13 +1,26 @@
 ---
 framework: account-management
 topic: roles-and-definitions
-source_title: "SaaS Roles Definitions"
+source_title: SaaS Roles Definitions
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: historical
+priority: 4
+first_party_for:
+- spiced
+- bowtie
+historical_reason: 2019 posts; role boundaries and ARR thresholds reflect that period
+framework_version: unversioned (2019 posts)
+public_url: https://winningbydesign.com/resources/blog/saas-role-definitions/
 source_url: https://winningbydesign.com/resources/blog/saas-role-definitions/
 also_covers:
-  - title: "SaaS Definitions"
-    url: https://winningbydesign.com/resources/blog/saas-definitions/
-retrieved_date: 2026-09-12
+- title: SaaS Definitions
+  url: https://winningbydesign.com/resources/blog/saas-definitions/
+published_date: '2019-08-23'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 note: Two overlapping Winning by Design glossary posts, deduplicated.
 ---

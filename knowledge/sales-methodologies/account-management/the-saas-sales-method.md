@@ -1,10 +1,23 @@
 ---
 framework: account-management
 topic: operating-model
-source_title: "The SaaS Sales Method"
+source_title: The SaaS Sales Method
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: historical
+priority: 4
+first_party_for:
+- spiced
+- bowtie
+historical_reason: 2019 post using earlier Bowtie stage names (Onboarding, First impact, Renewal, Expansion)
+framework_version: SaaS Sales Method (2019 post; older Bowtie stage names)
+public_url: https://winningbydesign.com/resources/blog/the-saas-sales-method-2/
 source_url: https://winningbydesign.com/resources/blog/the-saas-sales-method-2/
-retrieved_date: 2026-09-12
+published_date: '2019-08-22'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -54,7 +67,7 @@ The key shift: from **qualification-driven** selling (a one-time event) to
 
 Winning by Design describes its method as combining elements of all three.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 Three of the seven shifts are post-sale and define the AM stance directly:
 **orchestrating, results, growing**. Expansion is framed as growing the

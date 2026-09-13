@@ -1,7 +1,28 @@
+---
+framework: cross-framework
+topic: framework-selection
+source_title: Choosing a Framework (project notes)
+source_org: Project-authored
+source_authority: Project-authored synthesis (not from an external source); written from general knowledge before the sourced corpus was built
+source_type: secondary
+priority: 5
+secondary_for:
+- spiced
+- meddpicc
+framework_version: not applicable
+public_url: none (not publicly published)
+source_url: none (not publicly published)
+published_date: unknown
+date_basis: see git history
+retrieved_date: not applicable
+license: unknown
+reproduction_status: model_authored
+content_status: Project reasoning. For framework definitions, the first-party documents in knowledge/sales-methodologies take precedence under its authority ranking.
+---
 # Choosing a Framework
 
-Three frameworks, three different jobs. Reaching for the wrong one is the most
-common reason coaching advice feels generic.
+Three frameworks, three different jobs. Reaching for the wrong one is a common
+reason coaching advice feels generic.
 
 | Framework | Job | Answers |
 |---|---|---|
@@ -9,7 +30,11 @@ common reason coaching advice feels generic.
 | **MEDDPICC** | Qualification | Is this revenue event real and winnable? |
 | **TARO** | Execution | What play do I run, and what does success look like? |
 
-They are sequential, not competing. Diagnose, then qualify, then act.
+They are complementary, not competing. SPICED is the running state of the
+account, actively invoked when understanding a problem, change, opportunity,
+impact, urgency or decision. Account planning decides where to pursue.
+MEDDPICC qualifies and executes once a credible renewal or expansion
+opportunity exists. Do not force every interaction through any of them.
 
 ---
 
@@ -39,12 +64,13 @@ They are sequential, not competing. Diagnose, then qualify, then act.
 
 ## How they interlock
 
-SPICED's **Pain** and **Impact** feed MEDDPICC's **Identify Pain** and
-**Metrics** — the same evidence, used first to understand and then to qualify.
+SPICED's **Pain** and **Impact** (Winning by Design) overlap with MEDDPICC's
+**Implicate the Pain** and **Metrics** (MEDDICC) — similar evidence, used first
+to understand and then to qualify. Keep each framework's own term.
 
-SPICED's **Decision** is the shallow version of MEDDPICC's **Decision Criteria**,
-**Decision Process**, and **Paper Process**. Use SPICED's D for a quick read;
-escalate to MEDDPICC's three when real money is on the line.
+SPICED's **Decision** covers ground that MEDDPICC splits into **Decision
+Criteria**, **Decision Process**, and **Paper Process**. Use SPICED's D for a
+quick read; use MEDDPICC's three when real money is on the line.
 
 MEDDPICC gaps become TARO **Triggers**. "Economic Buyer unknown, renewal in 80
 days" is a trigger. The TARO play is the motion that closes the gap, and its

@@ -1,9 +1,29 @@
+---
+framework: spiced
+topic: overview
+source_title: SPICED (project notes)
+source_org: Project-authored
+source_authority: Project-authored synthesis (not from an external source); written from general knowledge before the sourced corpus was built
+source_type: secondary
+priority: 5
+secondary_for:
+- spiced
+framework_version: not applicable
+public_url: none (not publicly published)
+source_url: none (not publicly published)
+published_date: unknown
+date_basis: see git history
+retrieved_date: not applicable
+license: unknown
+reproduction_status: model_authored
+content_status: Project reasoning. For framework definitions, the first-party documents in knowledge/sales-methodologies take precedence under its authority ranking.
+---
 # SPICED — Diagnostic Framework
 
 SPICED is a customer-centric diagnostic framework (Winning by Design). In account
-management it is **not** a one-time discovery checklist. You re-run it at every
-stage — onboarding, mid-term, renewal, expansion — because the answers change as
-the account changes.
+management it is **not** a one-time discovery checklist. It is kept current across
+every stage — onboarding, mid-term, renewal, expansion — and actively re-run when
+something changes, because the answers change as the account changes.
 
 The five elements:
 
@@ -25,9 +45,9 @@ most importantly — **what changed recently**.
 **Good looks like:** You can describe how the customer works today without
 guessing, and you know what is different from 90 days ago.
 
-**Failure mode:** Relying on the Situation captured at handoff. Situation decays
-faster than any other element. Reorgs, budget cycles, new tooling, and headcount
-changes invalidate it constantly.
+**Failure mode:** Relying on the Situation captured at handoff. Situation goes
+stale quickly: reorgs, budget cycles, new tooling, and headcount changes
+invalidate it.
 
 **AM application:** Re-establish Situation at the start of every QBR. If you
 cannot name one thing that changed since last quarter, you have not done
@@ -86,8 +106,7 @@ them.
 
 **AM application:** Expansion conversations stall indefinitely without a Critical
 Event. If you cannot name one, the honest forecast is "no date," not "next
-quarter." A missing Critical Event is the single most common reason expansion
-slips.
+quarter." A missing Critical Event is a common reason expansion slips.
 
 ---
 
@@ -110,7 +129,9 @@ less. Confirm it rather than inheriting last year's map.
 
 ## Using SPICED in an account review
 
-Run the five in order and say out loud where the gaps are. A SPICED with three
+Review the five and say out loud where the gaps are. Winning by Design notes that
+Impact and Critical Events surface throughout a conversation rather than in a
+fixed sequence. A SPICED with three
 strong elements and two unknowns is a normal, healthy diagnostic result — the
 value is in naming the unknowns, not in pretending they are filled.
 

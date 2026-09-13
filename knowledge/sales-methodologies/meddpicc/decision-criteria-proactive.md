@@ -1,12 +1,25 @@
 ---
 framework: meddpicc
 topic: decision-criteria
-source_title: "MEDMEN: Take a Proactive Approach to Decision Criteria"
+source_title: 'MEDMEN: Take a Proactive Approach to Decision Criteria'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/medmen-take-a-proactive-approach-to-decision-criteria
 source_url: https://meddicc.com/resources/medmen-take-a-proactive-approach-to-decision-criteria
 author: Robin Daly
-speakers: [Andy Whyte, Pim Roelofsen]
-retrieved_date: 2026-09-12
+speakers:
+- Andy Whyte
+- Pim Roelofsen
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -44,7 +57,7 @@ heavily.
 3. Coordinate with the Champion before any executive outreach.
 4. Leave competitors out of the conversation.
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - If this came down to price today, what criterion would you have failed to shape?
 - Which influencer has not heard how this addresses their pain?

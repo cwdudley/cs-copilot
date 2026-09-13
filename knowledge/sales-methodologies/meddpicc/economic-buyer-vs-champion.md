@@ -1,11 +1,24 @@
 ---
 framework: meddpicc
 topic: economic-buyer
-source_title: "MEDMEN: Misidentifying your Champion for an Economic Buyer"
+source_title: 'MEDMEN: Misidentifying your Champion for an Economic Buyer'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/meddicc-media/medmen-s2-ep1-misidentifying-champions
 source_url: https://meddicc.com/meddicc-media/medmen-s2-ep1-misidentifying-champions
-speakers: [Andy Whyte, Pim Roelofsen]
-retrieved_date: 2026-09-12
+speakers:
+- Andy Whyte
+- Pim Roelofsen
+published_date: '2024-04-03'
+date_basis: date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 

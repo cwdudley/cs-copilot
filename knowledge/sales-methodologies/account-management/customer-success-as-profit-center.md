@@ -1,13 +1,26 @@
 ---
 framework: account-management
 topic: expansion-economics
-source_title: "Research Paper: Customer Success as a Profit Center"
+source_title: 'Research Paper: Customer Success as a Profit Center'
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: research
+priority: 3
+first_party_for:
+- spiced
+- bowtie
+framework_version: unversioned research paper (2021)
+public_url: https://winningbydesign.com/wp-content/uploads/2022/05/WbD-Research-Customer-Success-as-a-Profit-Center.pdf
 source_url: https://winningbydesign.com/wp-content/uploads/2022/05/WbD-Research-Customer-Success-as-a-Profit-Center.pdf
-authors: [Julie Weill Persofsky, Jacco J. van der Kooij]
-published: 2021-03
-retrieved_date: 2026-09-12
-content_status: public PDF via direct link, no license or confidentiality notice found. Text was extracted locally; charts were not readable, so some scenario figures are incomplete. Figures are the authors' modeled estimates, not benchmarks.
+authors:
+- Julie Weill Persofsky
+- Jacco J. van der Kooij
+published_date: 2021-03
+date_basis: stated in the document text (March 2021)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_pdf_extract
+content_status: PDF reachable by direct link; the page linking to it was not identified during retrieval. No license terms are stated. Text was extracted locally; charts were not readable, so some scenario figures are incomplete. Figures are the authors' modeled estimates, not benchmarks.
 ---
 
 # Customer Success as a Profit Center
@@ -88,7 +101,7 @@ logos without acquisition cost.
   **an account becomes more profitable the longer it stays**, even without revenue
   growth.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 Two operating implications for an AM:
 

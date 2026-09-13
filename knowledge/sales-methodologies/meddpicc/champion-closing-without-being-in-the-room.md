@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: champion
-source_title: "MEDMEN: How To Close Deals Without Being in the Room"
+source_title: 'MEDMEN: How To Close Deals Without Being in the Room'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/meddicc-media/medmen-how-to-close-deals-without-being-in-the-room
 source_url: https://meddicc.com/meddicc-media/medmen-how-to-close-deals-without-being-in-the-room
-retrieved_date: 2026-09-12
+published_date: '2026-04-23'
+date_basis: date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -43,7 +54,7 @@ exist.
 Not a demo handoff. Use it to identify potential Champions, uncover pain at
 multiple levels, and build a Champion plan before discussing the solution.
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - How many Champions do you have, and in which functions?
 - If your main Champion left tomorrow, who carries the deal?

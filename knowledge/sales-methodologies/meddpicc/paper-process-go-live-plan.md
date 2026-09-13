@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: paper-process
-source_title: "Go-Live Plan"
+source_title: Go-Live Plan
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/go-live-plan
 source_url: https://meddicc.com/resources/go-live-plan
-retrieved_date: 2026-09-12
+published_date: '2026-08-24'
+date_basis: date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: partial — the template itself is gated in paid MEDDICC offerings; the concept is public
 ---
 
@@ -35,7 +46,7 @@ Anchoring on go-live creates legitimate urgency (the customer wants the impact b
 a date) and keeps the seller's team focused on value delivery rather than
 signature.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 The same logic applies to renewals and expansions: plan backward from when the
 customer needs the expanded capability live, or from the renewal date, and put

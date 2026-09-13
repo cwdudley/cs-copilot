@@ -1,11 +1,22 @@
 ---
 framework: meddpicc
 topic: metrics
-source_title: "MEDMEN: Uncover More Metrics"
+source_title: 'MEDMEN: Uncover More Metrics'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/medmen-uncover-more-metrics
 source_url: https://meddicc.com/resources/medmen-uncover-more-metrics
 author: Robin Daly
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -40,7 +51,7 @@ An M1 value story connects:
 - The **decision criteria** needed to reach the gain
 - The **stakeholders** who are aligned around it
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - What did you research before this call, and what hypothesis did it produce?
 - Which M1 are you leading with, and why is it relevant to this customer?

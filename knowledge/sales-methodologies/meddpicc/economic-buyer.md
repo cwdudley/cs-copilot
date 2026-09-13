@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: economic-buyer
-source_title: "Economic Buyer — Definition, Identify & Qualification"
+source_title: Economic Buyer — Definition, Identify & Qualification
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: canonical
+priority: 1
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/what-is-meddpicc/economic-buyer
 source_url: https://meddicc.com/what-is-meddpicc/economic-buyer
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: no date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -44,7 +55,7 @@ Economic Buyers rarely announce themselves. They have to be actively identified.
 The Economic Buyer has the largest influence on the outcome — both the deal size
 and whether the deal happens at all.
 
-## Gaps in this source
+## Gaps in this source (model note)
 
 The component page does not cover question banks, blocked-access strategies, or
 renewal/expansion specifics. See the related Economic Buyer articles in this

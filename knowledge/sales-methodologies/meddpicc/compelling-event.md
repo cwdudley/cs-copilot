@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: compelling-event
-source_title: "The Necessity of a Compelling Event in MEDDPICC"
+source_title: The Necessity of a Compelling Event in MEDDPICC
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/the-necessity-of-a-compelling-event
 source_url: https://meddicc.com/resources/the-necessity-of-a-compelling-event
-retrieved_date: 2026-09-12
+published_date: '2026-08-13'
+date_basis: date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -69,7 +80,7 @@ not a Compelling Event.
 - Arriving too late in the buyer's journey to shape urgency
 - Not attaching quantified metrics to the timeframe
 
-## Cross-framework note
+## Cross-framework note (model note)
 
 This is conceptually close to SPICED's **Critical Event**. See the SPICED folder
 for Winning by Design's framing; this document preserves MEDDICC's.

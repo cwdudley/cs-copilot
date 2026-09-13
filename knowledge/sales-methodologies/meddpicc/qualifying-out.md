@@ -1,11 +1,23 @@
 ---
 framework: meddpicc
 topic: opportunity-qualification
-source_title: "Nobody Regrets Qualifying Out"
+source_title: Nobody Regrets Qualifying Out
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDICC (naming used in source URL)
+public_url: https://meddicc.com/resources/alexa-email-cadence-meddicc
 source_url: https://meddicc.com/resources/alexa-email-cadence-meddicc
-speakers: [Adan Lewis]
-retrieved_date: 2026-09-12
+speakers:
+- Adan Lewis
+published_date: '2026-08-20'
+date_basis: date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -35,7 +47,7 @@ Adan Lewis used a light-hearted qualifying-out email (a voice-assistant GIF
 "moving the deal to closed-lost") that drew positive replies because it was
 original and its intent was clear.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 The same discipline applies to expansion hypotheses: an expansion idea with no
 pain, no authority and no priority is better closed than carried in a forecast.

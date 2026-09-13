@@ -1,11 +1,23 @@
 ---
 framework: meddpicc
 topic: commercial-conversations
-source_title: "Rethinking Negotiation in Sales"
+source_title: Rethinking Negotiation in Sales
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/rethinking-negotiation-in-sales
 source_url: https://meddicc.com/resources/rethinking-negotiation-in-sales
-speakers: [Andy Whyte]
-retrieved_date: 2026-09-12
+speakers:
+- Andy Whyte
+published_date: unknown
+date_basis: page shows 2026-05-25, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -42,7 +54,7 @@ discovery.
 A value-based business case with a differentiated solution and a real Compelling
 Event.
 
-## Complementary view
+## Complementary view (model note)
 
 Winning by Design's "trade, don't negotiate" (in this folder) covers the mechanics
 of the commercial conversation; this document covers what makes it winnable

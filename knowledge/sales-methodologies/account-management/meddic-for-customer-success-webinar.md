@@ -1,11 +1,22 @@
 ---
 framework: meddpicc
 topic: customer-success
-source_title: "MEDDIC for Customer Success: Takeaways"
+source_title: 'MEDDIC for Customer Success: Takeaways'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDIC (naming used in source title)
+public_url: https://meddicc.com/resources/meddic-for-customer-success-live-webinar-takeaways
 source_url: https://meddicc.com/resources/meddic-for-customer-success-live-webinar-takeaways
 author: Robin Daly
-retrieved_date: 2026-09-12
+published_date: '2026-08-19'
+date_basis: date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 

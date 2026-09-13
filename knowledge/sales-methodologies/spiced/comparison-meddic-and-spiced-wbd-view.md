@@ -1,10 +1,25 @@
 ---
 framework: spiced
 topic: framework-comparison
-source_title: "MEDDIC and SPICED 2023 – Two Different Approaches"
+source_title: MEDDIC and SPICED 2023 – Two Different Approaches
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: historical
+priority: 4
+first_party_for:
+- spiced
+- bowtie
+secondary_for:
+- meddpicc
+historical_reason: Dated 2023 comparison that describes the original six-letter MEDDIC (including 'Identify Pain'), not current MEDDPICC
+framework_version: SPICED (2023); describes the six-letter MEDDIC form
+public_url: https://winningbydesign.com/resources/blog/meddic-and-spiced-2023-two-different-approaches-2/
 source_url: https://winningbydesign.com/resources/blog/meddic-and-spiced-2023-two-different-approaches-2/
-retrieved_date: 2026-09-12
+published_date: '2023-09-06'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 bias_note: Published by Winning by Design, which created SPICED. Read alongside MEDDICC's own comparison in the meddpicc folder.
 ---
@@ -31,7 +46,7 @@ Criteria, Decision Process, Identify Pain, Champion.
 | Lifecycle | Full customer journey | Sales funnel |
 | Forecasting | Action-based | Stage-based |
 | Functions | Sales, marketing, success, product | Primarily sales |
-| Seller experience assumed | Accessible to sellers with a few years' experience | Suited to very experienced sellers |
+| Seller experience (per the article's table) | 5+ years | 20+ years |
 | Emotional factor | Explicit emotional impact | Data-focused |
 | Motions | Dedicated, high, mid, low and no-touch | Mainly high-touch enterprise |
 
@@ -53,7 +68,7 @@ integrate SPICED rather than replace one with the other:
 All elements of MEDDIC can be found within SPICED, with SPICED adding elements for
 broader applicability.
 
-## Note on the two comparisons
+## Note on the two comparisons (model note)
 
 The two vendors disagree on which framework contains the other. For the AM
 Copilot, the useful takeaway both articles support is that the frameworks overlap

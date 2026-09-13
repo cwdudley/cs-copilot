@@ -1,13 +1,24 @@
 ---
 framework: meddpicc
 topic: overview
-source_title: "MEDDIC / MEDDPICC Sales Methodology and Process"
+source_title: MEDDIC / MEDDPICC Sales Methodology and Process
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: canonical
+priority: 1
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC (current); page also covers MEDDIC and MEDDICC lineage
+public_url: https://meddicc.com/meddpicc-sales-methodology-and-process
 source_url: https://meddicc.com/meddpicc-sales-methodology-and-process
 also_covers:
-  - title: "MEDDICC AI Info"
-    url: https://meddicc.com/ai-info
-retrieved_date: 2026-09-12
+- title: MEDDICC AI Info
+  url: https://meddicc.com/ai-info
+published_date: unknown
+date_basis: no date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -63,7 +74,7 @@ repeat; next steps unclear; communication reactive.
 **With:** faster qualification; transparent next steps; forecasting grounded
 in consistent evidence.
 
-## Content limits of this source
+## Content limits of this source (model note)
 
 The public page defines the elements. Question banks, per-element examples and
 "what good looks like" criteria are mostly in MEDDICC's paid Masterclass. The

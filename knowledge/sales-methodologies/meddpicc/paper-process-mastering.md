@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: paper-process
-source_title: "How to Master the Paper Process & Level Up Your Sales Process"
+source_title: How to Master the Paper Process & Level Up Your Sales Process
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/meddpicc-paper-process-meddicc
 source_url: https://meddicc.com/resources/meddpicc-paper-process-meddicc
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-25, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -39,7 +50,7 @@ Less administrative load on sellers, shorter cycles, a more professional custome
 experience, fewer errors, and higher close rates. MEDDICC cites a survey finding
 that 59% of sales leaders feel the agreement-and-signing stage takes too long.
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - Who, by name, is involved in legal, security and procurement?
 - How long did those steps take last time, and are they already scheduled?

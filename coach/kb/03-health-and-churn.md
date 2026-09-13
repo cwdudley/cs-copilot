@@ -1,3 +1,23 @@
+---
+framework: successcoaching
+topic: health-and-churn
+source_title: 'SuccessCOACHING playbook: Health Scoring and Churn Signals'
+source_org: SuccessCOACHING (user-provided)
+source_authority: User-provided SuccessCOACHING playbook (prompts/successcoaching.md on the main branch)
+source_type: canonical
+priority: 1
+first_party_for:
+- successcoaching
+framework_version: as provided (undated)
+public_url: none (not publicly published)
+source_url: none (not publicly published)
+published_date: unknown
+date_basis: not recorded in the playbook
+retrieved_date: not applicable
+license: unknown
+reproduction_status: restructured_user_provided
+content_status: Restructured from the user-provided playbook. Headings ending in (model note), and some interpretive commentary within sections, are project-authored and rank as secondary.
+---
 # Health Scoring and Churn Signals
 
 ## Four Health Bands
@@ -64,7 +84,7 @@ Early adoption warning signs:
 - Missed business reviews
 - Low engagement with the CSM
 
-Champion departure is the highest-leverage Tier 2 signal — it invalidates your
+Champion departure is a high-leverage Tier 2 signal — it invalidates your
 MEDDPICC Champion element entirely and requires re-qualification from scratch.
 
 ## Tier 3 — Late-Stage Risk (90–120 days pre-renewal)

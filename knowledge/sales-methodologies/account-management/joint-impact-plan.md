@@ -1,10 +1,22 @@
 ---
 framework: account-management
 topic: value-realization
-source_title: "Create a Joint Impact Plan (Blueprint)"
+source_title: Create a Joint Impact Plan (Blueprint)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: unversioned
+public_url: https://winningbydesign.com/resources/blueprints/create-a-joint-impact-plan/
 source_url: https://winningbydesign.com/resources/blueprints/create-a-joint-impact-plan/
-retrieved_date: 2026-09-12
+published_date: '2022-05-09'
+date_basis: page metadata (datePublished); five blueprints share this date, which may reflect a site migration
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_partial
 content_status: partial — full 5-page PDF (published May 2022) gated behind a form; only the public summary was used
 ---
 
@@ -40,7 +52,7 @@ concrete, customer-facing roadmap tied to business impact and milestones.
 CS leaders, CSMs, account managers and revenue leaders, especially teams moving
 from adoption-based to impact-based customer success.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 Two details matter for renewals and expansion:
 
@@ -49,7 +61,7 @@ Two details matter for renewals and expansion:
 - Expansion is framed as the **next set of impact goals**, not a new product
   pitch.
 
-## Related concept
+## Related concept (model note)
 
 MEDDICC's Go-Live Plan (see `meddpicc/paper-process-go-live-plan.md`) is a
 pre-sale mutual plan anchored on go-live. The Joint Impact Plan is the post-sale

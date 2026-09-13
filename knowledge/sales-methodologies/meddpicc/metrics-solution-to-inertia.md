@@ -1,11 +1,22 @@
 ---
 framework: meddpicc
 topic: metrics
-source_title: "Metrics as a Solution to Inertia"
+source_title: Metrics as a Solution to Inertia
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/metrics-as-a-solution-to-inertia
 source_url: https://meddicc.com/resources/metrics-as-a-solution-to-inertia
 author: Pim Roelofsen
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-25, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -40,7 +51,7 @@ every go-to-market team the same value thread.
 | Isolated selling motions | A unified GTM approach |
 | Professional seller | Trusted advisor |
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - If this deal dies, is the likeliest cause a competitor or no decision?
 - Has the champion been given a quantified case they can defend without you?

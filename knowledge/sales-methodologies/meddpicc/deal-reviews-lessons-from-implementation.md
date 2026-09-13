@@ -1,11 +1,22 @@
 ---
 framework: meddpicc
 topic: deal-inspection
-source_title: "Lessons I've Learned Since Implementing MEDDICC"
+source_title: Lessons I've Learned Since Implementing MEDDICC
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDICC (naming used in source)
+public_url: https://meddicc.com/resources/lessons-ive-learnt-since-implementing-meddic
 source_url: https://meddicc.com/resources/lessons-ive-learnt-since-implementing-meddic
 author: Andy Whyte
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 

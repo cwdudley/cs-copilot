@@ -1,11 +1,23 @@
 ---
 framework: expansion
 topic: expansion-types
-source_title: "The Bowtie: A Customer-Centric Framework for a Recurring Revenue Business (Proposed Standard v1.0)"
+source_title: 'The Bowtie: A Customer-Centric Framework for a Recurring Revenue Business (Proposed Standard v1.0)'
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: research
+priority: 3
+first_party_for:
+- spiced
+- bowtie
+framework_version: 'The Bowtie: Proposed Standard v1.0'
+public_url: https://winningbydesign.com/wp-content/uploads/2026/02/The-Bowtie-A-Proposed-Standard.pdf
 source_url: https://winningbydesign.com/wp-content/uploads/2026/02/The-Bowtie-A-Proposed-Standard.pdf
-retrieved_date: 2026-09-12
-content_status: public PDF via direct link. No license or confidentiality notice appears in the document, and no gated landing page was found. Text was extracted locally; only the post-sale sections were used.
+published_date: unknown
+date_basis: no publication date found in the extracted text
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_pdf_extract
+content_status: PDF reachable by direct link. Winning by Design separately offers a related 'Bowtie Standard' behind a form; how the two documents relate is unclear. No license terms are stated. Text was extracted locally; only the post-sale sections were used.
 ---
 
 # Expansion Types, Ownership, and the Post-Sale Bowtie

@@ -1,10 +1,22 @@
 ---
 framework: account-planning
 topic: stakeholder-mapping
-source_title: "Mapping Relationships (Blueprint)"
+source_title: Mapping Relationships (Blueprint)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: unversioned
+public_url: https://winningbydesign.com/resources/blueprints/mapping-relationships/
 source_url: https://winningbydesign.com/resources/blueprints/mapping-relationships/
-retrieved_date: 2026-09-12
+published_date: '2022-05-09'
+date_basis: page metadata (datePublished); five blueprints share this date, which may reflect a site migration
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_partial
 content_status: partial — full 8-page PDF with plays and templates is gated behind a form; only the public summary was used
 ---
 
@@ -34,7 +46,7 @@ multi-stakeholder deals **and expansion motions**. Winning by Design notes that
 teams running cross-sell, upsell and re-sell motions benefit from reducing
 single-contact dependency.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 For an AM, the relationship map is a standing account artifact, not a deal
 artifact. Coverage gaps, negative sentiment and single-threaded relationships are

@@ -1,11 +1,22 @@
 ---
 framework: meddpicc
 topic: economic-buyer
-source_title: "MEDMEN: Using a Value Pyramid With The Economic Buyer"
+source_title: 'MEDMEN: Using a Value Pyramid With The Economic Buyer'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/medmen-using-a-value-pyramid-with-the-economic-buyer
 source_url: https://meddicc.com/resources/medmen-using-a-value-pyramid-with-the-economic-buyer
 author: Robin Daly
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -42,7 +53,7 @@ Use the pyramid to reset and re-establish strategic alignment after
 reorganizations or strategy changes — a structured way back in, rather than
 starting from zero.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 The re-alignment use applies directly to existing accounts: after an executive
 change or strategy shift, rebuilding the pyramid is a way to re-earn relevance

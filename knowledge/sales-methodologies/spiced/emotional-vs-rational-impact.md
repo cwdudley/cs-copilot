@@ -1,10 +1,22 @@
 ---
 framework: spiced
 topic: impact
-source_title: "Emotional Versus Rational Impact"
+source_title: Emotional Versus Rational Impact
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: SPICED
+public_url: https://winningbydesign.com/resources/blog/emotional-versus-rational-impact/
 source_url: https://winningbydesign.com/resources/blog/emotional-versus-rational-impact/
-retrieved_date: 2026-09-12
+published_date: '2021-11-04'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -50,7 +62,7 @@ through the whole relationship:
 Relying only on adoption and usage metrics reflects what the vendor needs to see,
 not whether the customer succeeded — and it limits expansion.
 
-## Cross-framework note
+## Cross-framework note (model note)
 
 MEDDPICC's Metrics element structures quantified value (economic, efficiency,
 risk). SPICED's Impact explicitly adds the emotional dimension. Both views are

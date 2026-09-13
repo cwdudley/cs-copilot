@@ -1,13 +1,25 @@
 ---
 framework: account-management
 topic: account-management-curriculum
-source_title: "Account Management for Growth (Training Course)"
+source_title: Account Management for Growth (Training Course)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: course listing current at retrieval
+public_url: https://winningbydesign.com/training-coaching/account-management-for-growth/
 source_url: https://winningbydesign.com/training-coaching/account-management-for-growth/
 also_covers:
-  - title: "Account Management for Growth — Revenue Academy listing"
-    url: https://winningbydesign.com/revenue-academy/course-account-management-for-growth/
-retrieved_date: 2026-09-12
+- title: Account Management for Growth — Revenue Academy listing
+  url: https://winningbydesign.com/revenue-academy/course-account-management-for-growth/
+published_date: '2025-12-17'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_outline
 content_status: public course description — the course materials themselves are paid and were not accessed
 note: Two listings of the same course, deduplicated.
 ---
@@ -73,7 +85,7 @@ goals, balancing give and get, and finding win-win outcomes.
 Use stories to build relationships and illustrate impact on the customer's
 business, and move renewals and expansions to close without pitching features.
 
-## The implied AM operating sequence
+## The implied AM operating sequence (model note)
 
 Read in order, the curriculum describes a sequence an AM coach can use:
 

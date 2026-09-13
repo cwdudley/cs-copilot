@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: expansion
-source_title: "MEDDPICC as the Full Customer Lifecycle Framework: Account Executives"
+source_title: 'MEDDPICC as the Full Customer Lifecycle Framework: Account Executives'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/meddpicc-as-framework-account-executive
 source_url: https://meddicc.com/resources/meddpicc-as-framework-account-executive
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -49,8 +60,8 @@ MEDDICC's position is that sellers, not customers, control the timeline. The
 value elements — Pain, Metrics, Decision Criteria — quantify the cost of inaction
 and the gain from acting, creating urgency through evidence rather than pressure.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
-Question 2 matters most in expansion: the Economic Buyer for a new use case or
+Question 2 deserves particular attention in expansion: the Economic Buyer for a new use case or
 business unit is often **not** the Economic Buyer who approved the original
 purchase.

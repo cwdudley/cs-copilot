@@ -1,10 +1,22 @@
 ---
 framework: spiced
 topic: diagnosis
-source_title: "How to Diagnose (Blueprint)"
+source_title: How to Diagnose (Blueprint)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: SPICED
+public_url: https://winningbydesign.com/resources/blueprints/how-to-diagnose/
 source_url: https://winningbydesign.com/resources/blueprints/how-to-diagnose/
-retrieved_date: 2026-09-12
+published_date: '2022-05-09'
+date_basis: page metadata (datePublished); five blueprints share this date, which may reflect a site migration
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_partial
 content_status: partial — full PDF is gated behind a form; only the public summary was used
 ---
 
@@ -48,7 +60,7 @@ Establishing a Critical Event clarifies priority and next steps. The urgency
 should come from a milestone the buyer identifies, not a timeline the seller
 imposes.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 The same sequence applies at a QBR or an expansion conversation: diagnose the
 current situation and new pain before proposing an upsell.

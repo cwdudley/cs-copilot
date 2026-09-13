@@ -1,10 +1,22 @@
 ---
 framework: account-management
 topic: customer-success-curriculum
-source_title: "Customer Success for Impact (Training Course)"
+source_title: Customer Success for Impact (Training Course)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: course listing current at retrieval
+public_url: https://winningbydesign.com/training-coaching/customer-success-for-impact/
 source_url: https://winningbydesign.com/training-coaching/customer-success-for-impact/
-retrieved_date: 2026-09-12
+published_date: '2025-12-16'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_outline
 content_status: public course description — course materials are paid and were not accessed
 ---
 
@@ -55,7 +67,7 @@ retention, expansion and recurring revenue.
 10. **Save Plays** triggered by risk events or worrying conversations
 11. Engaging decision makers and getting past blockers to grow the partnership
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 Supplies the vocabulary for three AM moments the corpus otherwise lacks detail on:
 EBRs as an expansion-discovery mechanism, save plays for at-risk renewals, and

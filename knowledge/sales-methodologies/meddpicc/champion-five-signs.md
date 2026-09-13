@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: champion
-source_title: "5 Signs You Don't Have a Champion"
+source_title: 5 Signs You Don't Have a Champion
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/5-signs-you-dont-have-a-champion
 source_url: https://meddicc.com/resources/5-signs-you-dont-have-a-champion
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: no date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -23,7 +34,7 @@ content_status: public
 Every Champion starts as a contact. Turning a contact into a Champion takes
 mutual trust built from both sides.
 
-## Using this as a test
+## Using this as a test (model note)
 
 Make a specific, slightly costly request — an introduction to the Economic Buyer,
 pulling another stakeholder into a meeting, sharing an internal objection. How

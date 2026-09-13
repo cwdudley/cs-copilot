@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: decision-process
-source_title: "Decision Process"
+source_title: Decision Process
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: canonical
+priority: 1
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/what-is-meddpicc/decision-process
 source_url: https://meddicc.com/what-is-meddpicc/decision-process
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: no date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 

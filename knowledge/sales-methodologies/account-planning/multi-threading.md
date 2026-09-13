@@ -1,11 +1,22 @@
 ---
 framework: meddpicc
 topic: multithreading
-source_title: "What It Really Means to Multi-Thread"
+source_title: What It Really Means to Multi-Thread
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/what-it-really-means-to-multi-thread
 source_url: https://meddicc.com/resources/what-it-really-means-to-multi-thread
 author: Andy Whyte
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-25, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -41,7 +52,7 @@ also means **your** organization is engaged at matching levels:
 - How qualified are our key customer stakeholders?
 - Who on our team, beyond the account owner, is actively engaged?
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 Relationship fragility is a renewal risk as much as a deal risk. An account held
 together by a single AM-to-Champion relationship is exposed when either person

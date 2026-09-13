@@ -1,10 +1,22 @@
 ---
 framework: account-management
 topic: customer-success-operating-model
-source_title: "Customer Success Operating Model (Blueprint)"
+source_title: Customer Success Operating Model (Blueprint)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: unversioned
+public_url: https://winningbydesign.com/resources/blueprints/customer-success-operating-model/
 source_url: https://winningbydesign.com/resources/blueprints/customer-success-operating-model/
-retrieved_date: 2026-09-12
+published_date: '2022-10-03'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_partial
 content_status: partial — the 48-page guide (published Oct 2022) is gated behind a form; only the public summary was used. Separately published parts of the series returned 404 at retrieval.
 ---
 
@@ -40,7 +52,7 @@ The series also included chapters on core elements, metrics and core skills.
 - The model gives Sales, CS and RevOps common language, metrics and
   interoperable workflows.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 Two principles here are load-bearing for an AM coach:
 

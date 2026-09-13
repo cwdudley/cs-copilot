@@ -1,13 +1,25 @@
 ---
 framework: spiced
 topic: overview
-source_title: "The Modern Revenue Operating Model | SPICED"
+source_title: The Modern Revenue Operating Model | SPICED
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: canonical
+priority: 1
+first_party_for:
+- spiced
+- bowtie
+framework_version: SPICED, current page (2025)
+public_url: https://winningbydesign.com/spiced-framework/
 source_url: https://winningbydesign.com/spiced-framework/
 also_covers:
-  - title: "Operationalize the SPICED Framework (SPICED Operating Model)"
-    url: https://winningbydesign.com/design/spiced-operating-model/
-retrieved_date: 2026-09-12
+- title: Operationalize the SPICED Framework (SPICED Operating Model)
+  url: https://winningbydesign.com/design/spiced-operating-model/
+published_date: '2025-11-28'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 

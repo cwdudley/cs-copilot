@@ -1,3 +1,23 @@
+---
+framework: successcoaching
+topic: renewals
+source_title: 'SuccessCOACHING playbook: Renewals'
+source_org: SuccessCOACHING (user-provided)
+source_authority: User-provided SuccessCOACHING playbook (prompts/successcoaching.md on the main branch)
+source_type: canonical
+priority: 1
+first_party_for:
+- successcoaching
+framework_version: as provided (undated)
+public_url: none (not publicly published)
+source_url: none (not publicly published)
+published_date: unknown
+date_basis: not recorded in the playbook
+retrieved_date: not applicable
+license: unknown
+reproduction_status: restructured_user_provided
+content_status: Restructured from the user-provided playbook. Headings ending in (model note), and some interpretive commentary within sections, are project-authored and rank as secondary.
+---
 # Renewals
 
 ## Risk Classification
@@ -53,27 +73,28 @@ commitments.
 
 ---
 
-## Qualifying a renewal
+## Qualifying a renewal (model note)
 
 Renewals need qualification, not just monitoring. Run MEDDPICC — see the
 MEDDPICC document for full detail.
 
-The elements most often skipped on renewals, in order:
+Elements that are easy to skip on renewals:
 
-1. **Paper Process** — where renewals slip past the date most often. Legal,
+1. **Paper Process** — MEDDICC names this as where renewals slip. Legal,
    procurement, and security review take time nobody scheduled. Start 90 days out
    for enterprise.
 2. **Economic Buyer** — the champion relationship feels sufficient. It is not.
    Budget owners change.
-3. **Competition** — usually budget competition, not product competition. Ask
+3. **Competition** — often budget competition, not product competition. Ask
    what else competes for the same line item.
 
-**Three or more Unknowns inside the renewal window means the forecast is not
-credible.** Say that plainly rather than probability-weighting a guess.
+**Model heuristic, not a MEDDICC rule:** treat three or more Unknowns inside the
+renewal window as a sign the forecast is not credible, and say so plainly rather
+than probability-weighting a guess.
 
 ---
 
-## Re-diagnosing before renewal
+## Re-diagnosing before renewal (model note)
 
 If anything material changed — champion exit, reorg, escalation, budget-owner
 change — re-run SPICED from scratch. The Situation captured at last renewal

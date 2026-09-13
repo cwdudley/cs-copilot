@@ -1,10 +1,22 @@
 ---
 framework: spiced
 topic: customer-journey
-source_title: "SPICED Across the Customer Journey (Blueprint)"
+source_title: SPICED Across the Customer Journey (Blueprint)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: SPICED
+public_url: https://winningbydesign.com/resources/blueprints/spiced-across-the-customer-journey/
 source_url: https://winningbydesign.com/resources/blueprints/spiced-across-the-customer-journey/
-retrieved_date: 2026-09-12
+published_date: '2022-05-09'
+date_basis: page metadata (datePublished); five blueprints share this date, which may reflect a site migration
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_partial
 content_status: partial — full 7-page PDF (published May 2022) is gated behind a form; only the public summary was used
 ---
 
@@ -45,7 +57,7 @@ through the lifecycle.
 - Smoother transitions
 - Customers not asked to repeat information
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 This is the source for treating SPICED as a **living account record** an AM
 inherits and keeps current, rather than a pre-sale qualification artifact.

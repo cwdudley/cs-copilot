@@ -1,19 +1,31 @@
 ---
 framework: spiced
 topic: diagnosis
-source_title: "The Operating Model for Recurring Revenue (Research Paper: The Fundamental Models of Recurring Revenue)"
+source_title: 'The Operating Model for Recurring Revenue (Research Paper: The Fundamental Models of Recurring Revenue)'
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: research
+priority: 3
+first_party_for:
+- spiced
+- bowtie
+framework_version: SPICED as defined in the 2022 research paper
+public_url: https://winningbydesign.com/wp-content/uploads/2022/06/Research-Paper_-The-Fundamental-Models-of-Recurring-Revenue.pdf
 source_url: https://winningbydesign.com/wp-content/uploads/2022/06/Research-Paper_-The-Fundamental-Models-of-Recurring-Revenue.pdf
 author: Jacco J. van der Kooij
-published: 2022-06
-retrieved_date: 2026-09-12
-content_status: public PDF via direct link. The paper describes its content as open standards; no license or confidentiality notice found. Text was extracted locally; the conversation diagram was only partly legible.
+published_date: unknown
+date_basis: no publication date found in the extracted text
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_pdf_extract
+content_status: PDF reachable by direct link; the page linking to it was not identified during retrieval. No license terms are stated. Text was extracted locally; the conversation diagram was only partly legible.
 ---
 
 # The Operating Model for Recurring Revenue — SPICED as First-Party Definitions
 
-This research paper is Winning by Design's most detailed **public** statement of
-SPICED's element definitions and conversation structure.
+This research paper was the most detailed **public** Winning by Design statement
+of SPICED's element definitions and conversation structure found during
+retrieval.
 
 ## Six models of recurring revenue
 

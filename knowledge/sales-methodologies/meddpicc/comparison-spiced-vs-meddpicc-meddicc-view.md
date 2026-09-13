@@ -1,11 +1,24 @@
 ---
 framework: meddpicc
 topic: framework-comparison
-source_title: "SPICED vs MEDDPICC: Which Is Right for Your Sales Team?"
+source_title: 'SPICED vs MEDDPICC: Which Is Right for Your Sales Team?'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+secondary_for:
+- spiced
+framework_version: MEDDPICC; describes SPICED as a third party
+public_url: https://meddicc.com/resources/spiced-sales-methodology-vs-meddpicc-meddicc
 source_url: https://meddicc.com/resources/spiced-sales-methodology-vs-meddpicc-meddicc
 author: Robin Daly
-retrieved_date: 2026-09-12
+published_date: '2026-07-30'
+date_basis: date shown on page
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 bias_note: Published by MEDDICC, which sells MEDDPICC training. Read alongside Winning by Design's own comparison in the spiced folder.
 ---

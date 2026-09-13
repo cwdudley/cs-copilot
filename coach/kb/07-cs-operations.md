@@ -1,3 +1,23 @@
+---
+framework: successcoaching
+topic: cs-operations
+source_title: 'SuccessCOACHING playbook: CS Operations'
+source_org: SuccessCOACHING (user-provided)
+source_authority: User-provided SuccessCOACHING playbook (prompts/successcoaching.md on the main branch)
+source_type: canonical
+priority: 1
+first_party_for:
+- successcoaching
+framework_version: as provided (undated)
+public_url: none (not publicly published)
+source_url: none (not publicly published)
+published_date: unknown
+date_basis: not recorded in the playbook
+retrieved_date: not applicable
+license: unknown
+reproduction_status: restructured_user_provided
+content_status: Restructured from the user-provided playbook. Headings ending in (model note), and some interpretive commentary within sections, are project-authored and rank as secondary.
+---
 # CS Operations
 
 ## Capacity

@@ -1,10 +1,22 @@
 ---
 framework: spiced
 topic: deal-inspection
-source_title: "Analyzing a Deal"
+source_title: Analyzing a Deal
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: SPICED
+public_url: https://winningbydesign.com/resources/blog/deal-analysis/
 source_url: https://winningbydesign.com/resources/blog/deal-analysis/
-retrieved_date: 2026-09-12
+published_date: '2022-06-27'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -49,7 +61,7 @@ reveals patterns.
 - Adjust forecast confidence and lead scoring
 - Re-run the analysis each quarter
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 The same inspection applies to renewals and expansions: analyze churned and
 expanded accounts through SPICED to find which patterns predict each.

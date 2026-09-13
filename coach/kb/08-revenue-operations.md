@@ -1,3 +1,23 @@
+---
+framework: successcoaching
+topic: revenue-operations
+source_title: 'SuccessCOACHING playbook: Revenue Operations'
+source_org: SuccessCOACHING (user-provided)
+source_authority: User-provided SuccessCOACHING playbook (prompts/successcoaching.md on the main branch)
+source_type: canonical
+priority: 1
+first_party_for:
+- successcoaching
+framework_version: as provided (undated)
+public_url: none (not publicly published)
+source_url: none (not publicly published)
+published_date: unknown
+date_basis: not recorded in the playbook
+retrieved_date: not applicable
+license: unknown
+reproduction_status: restructured_user_provided
+content_status: Restructured from the user-provided playbook. Headings ending in (model note), and some interpretive commentary within sections, are project-authored and rank as secondary.
+---
 # Revenue Operations
 
 ## Forecast discipline
@@ -29,8 +49,8 @@ Weekly view:
 - Cross-functional summary
 
 **Leadership needs segment-level shifts and ARR at risk — not individual account
-detail.** Rolling up account narratives into a leadership review is the most
-common way a pulse report becomes unreadable. Name the segment movement, then
+detail.** Rolling up account narratives into a leadership review is a common
+way a pulse report becomes unreadable. Name the segment movement, then
 offer account detail on request.
 
 ---
@@ -51,7 +71,7 @@ Below threshold:
 - **Conditional pass** with documented remediation actions, or
 - **Fail**, requiring Sales to re-engage
 
-Handoff quality is the earliest controllable predictor of Tier 1 structural
+Handoff quality is an early, controllable predictor of Tier 1 structural
 churn risk. A failed handoff that proceeds unremediated shows up 11 months later
 as a renewal with no documented success criteria.
 

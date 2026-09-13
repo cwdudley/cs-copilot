@@ -1,10 +1,22 @@
 ---
 framework: expansion
 topic: expansion-system
-source_title: "Playbooks for Repeatable GTM Execution"
+source_title: Playbooks for Repeatable GTM Execution
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: unversioned
+public_url: https://winningbydesign.com/deploy/playbooks/
 source_url: https://winningbydesign.com/deploy/playbooks/
-retrieved_date: 2026-09-12
+published_date: '2026-07-22'
+date_basis: page metadata (datePublished)
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_outline
 content_status: public, largely promotional — describes the components of paid playbooks, not their content
 note: https://winningbydesign.com/services/expansion-growth-playbook/ redirected to a generic services page at retrieval; the playbook descriptions were captured from this page.
 ---
@@ -43,7 +55,7 @@ the renewal date.
 
 **Example deliverable:** documented impact process.
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 Together these name the parts of a complete AM system: whitespace analysis and
 account planning to decide **where** to grow; trigger plays to decide **when**;

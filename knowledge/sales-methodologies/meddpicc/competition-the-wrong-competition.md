@@ -1,11 +1,23 @@
 ---
 framework: meddpicc
 topic: competition
-source_title: "MEDMEN: Obsessing Over the Wrong Competition?"
+source_title: 'MEDMEN: Obsessing Over the Wrong Competition?'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/medmen-obsessing-over-the-wrong-competition
 source_url: https://meddicc.com/resources/medmen-obsessing-over-the-wrong-competition
-speakers: [Andy Whyte]
-retrieved_date: 2026-09-12
+speakers:
+- Andy Whyte
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -34,7 +46,7 @@ complete a separate transformation step first. When that dependency was ignored,
 the deal lost momentum. Legal and procurement involvement can add competing
 departmental interests.
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - If this deal slips, will it be to a vendor or to nothing?
 - Which of value, stakeholders or process is weakest?

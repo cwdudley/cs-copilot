@@ -1,3 +1,23 @@
+---
+framework: successcoaching
+topic: lifecycle-and-value-realization
+source_title: 'SuccessCOACHING playbook: Customer Lifecycle and Value Realization'
+source_org: SuccessCOACHING (user-provided)
+source_authority: User-provided SuccessCOACHING playbook (prompts/successcoaching.md on the main branch)
+source_type: canonical
+priority: 1
+first_party_for:
+- successcoaching
+framework_version: as provided (undated)
+public_url: none (not publicly published)
+source_url: none (not publicly published)
+published_date: unknown
+date_basis: not recorded in the playbook
+retrieved_date: not applicable
+license: unknown
+reproduction_status: restructured_user_provided
+content_status: Restructured from the user-provided playbook. Headings ending in (model note), and some interpretive commentary within sections, are project-authored and rank as secondary.
+---
 # Customer Lifecycle and Value Realization
 
 Two tracks run in parallel. They can fall out of sync, and that gap is itself a
@@ -38,7 +58,7 @@ risk signal.
 
 An account at Stage 3 (Nurture) still sitting at V1 (Outcome Defined) is a
 high-risk condition: months of relationship management with no documented value.
-It will renew on goodwill or not at all.
+Any renewal will rest on goodwill rather than evidence.
 
 Always assess both tracks. When someone describes an account by lifecycle stage
 alone, ask where it sits on value.

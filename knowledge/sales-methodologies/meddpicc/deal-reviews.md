@@ -1,16 +1,28 @@
 ---
 framework: meddpicc
 topic: deal-inspection
-source_title: "Mastering MEDDPICC: The Power of the 100-Hour Rule and Deal Reviews"
+source_title: 'Mastering MEDDPICC: The Power of the 100-Hour Rule and Deal Reviews'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/mastering-meddpicc-deal-reviews
 source_url: https://meddicc.com/resources/mastering-meddpicc-deal-reviews
 also_covers:
-  - title: "Directing the Deal Review"
-    url: https://meddicc.com/resources/leadership-in-meddpicc-mastery
-  - title: "Reinventing Deal Reviews"
-    url: https://meddicc.com/resources/reinventing-deal-reviews
-speakers: [Pim Roelofsen]
-retrieved_date: 2026-09-12
+- title: Directing the Deal Review
+  url: https://meddicc.com/resources/leadership-in-meddpicc-mastery
+- title: Reinventing Deal Reviews
+  url: https://meddicc.com/resources/reinventing-deal-reviews
+speakers:
+- Pim Roelofsen
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 note: Three overlapping MEDDICC articles on deal reviews, deduplicated into one document.
 ---
@@ -60,7 +72,7 @@ reviews build a culture of introspection, accountability and shared learning.
 
 The format can and should be adapted to the organization and industry.
 
-## Gaps in these sources
+## Gaps in these sources (model note)
 
 The articles give the rationale and cadence but not a question bank or scoring
 rubric. See `deal-reviews-lessons-from-implementation.md` for the 1–10 confidence

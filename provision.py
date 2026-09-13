@@ -68,15 +68,63 @@ def kb_documents() -> list[Path]:
     return sorted(KB_DIR.glob("*.md")) + sorted(KNOWLEDGE_DIR.rglob("*.md"))
 
 
-def _doc_name(path: Path, text: str) -> str:
-    # Sourced corpus docs carry frontmatter; name them by org and title so
-    # retrieved chunks stay attributable. Coach docs fall back to the filename.
-    title = re.search(r'^source_title:\s*"?(.+?)"?\s*$', text, re.MULTILINE)
-    org = re.search(r'^source_org:\s*"?(.+?)"?\s*$', text, re.MULTILINE)
-    if title and org:
-        return f"{org.group(1)}: {title.group(1)}"
-    if path.name == "INDEX.md":
-        return "Sales Methodology Corpus Index"
+FRAMEWORK_LABELS = {
+    "meddpicc": "MEDDPICC",
+    "spiced": "SPICED",
+    "successcoaching": "SuccessCOACHING",
+    "account-management": "Account management",
+    "expansion": "Expansion",
+    "account-planning": "Account planning",
+    "cross-framework": "Cross-framework",
+}
+
+# Sections marked "(model note)" are project inference inside a sourced
+# document, so they must not inherit the document's first-party authority.
+MODEL_NOTE_TAG = "[model note · secondary · P5]"
+
+
+def _frontmatter(text: str) -> dict[str, str]:
+    match = re.match(r"\A---\n(.*?)\n---\n", text, re.DOTALL)
+    if not match:
+        return {}
+    meta = {}
+    for line in match.group(1).splitlines():
+        field = re.match(r"^([a-z_]+):\s*(.*)$", line)
+        if field:
+            meta[field.group(1)] = field.group(2).strip().strip('"')
+    return meta
+
+
+def _provenance_tag(meta: dict[str, str]) -> str:
+    parts = [
+        FRAMEWORK_LABELS.get(meta.get("framework", ""), meta.get("framework", "")),
+        meta.get("source_org", ""),
+        meta.get("source_type", ""),
+        f"P{meta['priority']}" if meta.get("priority") else "",
+    ]
+    return "[" + " · ".join(p for p in parts if p) + "]"
+
+
+def _tag_headings(text: str, tag: str) -> str:
+    """Append the provenance tag to every heading.
+
+    Retrieval returns chunks, not whole documents, and the frontmatter only
+    lands in the first chunk. Tagging headings keeps framework, source and
+    authority attached to each section wherever the chunker splits.
+    """
+    lines, in_code = [], False
+    for line in text.split("\n"):
+        if line.startswith("```"):
+            in_code = not in_code
+        elif not in_code and re.match(r"^#{1,3} ", line):
+            line = f"{line} {MODEL_NOTE_TAG if '(model note)' in line else tag}"
+        lines.append(line)
+    return "\n".join(lines)
+
+
+def _doc_name(path: Path, meta: dict[str, str]) -> str:
+    if meta.get("source_title") and meta.get("source_org"):
+        return f"P{meta.get('priority', '?')} {meta.get('source_type', '')} | {meta['source_org']}: {meta['source_title']}"
     # "04-renewals.md" -> "Renewals"
     return path.stem.split("-", 1)[-1].replace("-", " ").title()
 
@@ -91,14 +139,16 @@ def upload_knowledge_base() -> list[dict]:
     print(f"Uploading {len(docs)} knowledge base documents...")
 
     for path in docs:
-        text = path.read_text(encoding="utf-8")
+        text = path.read_text(encoding="utf-8").replace("\r\n", "\n")
 
         # Documents under 500 bytes cannot be RAG-indexed and silently fall back
         # to being stuffed into the prompt — exactly what this design avoids.
         if len(text.encode("utf-8")) < 500:
             print(f"  ! {path.name} is under 500 bytes and will not be indexed")
 
-        name = _doc_name(path, text)
+        meta = _frontmatter(text)
+        name = _doc_name(path, meta)
+        text = _tag_headings(text, _provenance_tag(meta))
 
         result = _post("/convai/knowledge-base/text", {"text": text, "name": name})
         entries.append({"type": "text", "name": name, "id": result["id"]})

@@ -1,10 +1,22 @@
 ---
 framework: account-planning
 topic: executive-engagement
-source_title: "The Stakeholder Meeting (Blueprint)"
+source_title: The Stakeholder Meeting (Blueprint)
 source_org: Winning by Design
+source_authority: Winning by Design (creator of SPICED and the Bowtie)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- spiced
+- bowtie
+framework_version: unversioned
+public_url: https://winningbydesign.com/resources/blueprints/the-stakeholder-meeting/
 source_url: https://winningbydesign.com/resources/blueprints/the-stakeholder-meeting/
-retrieved_date: 2026-09-12
+published_date: '2022-05-09'
+date_basis: page metadata (datePublished); five blueprints share this date, which may reflect a site migration
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes_partial
 content_status: partial — full 3-page PDF gated behind a form; only the public summary was used
 ---
 
@@ -34,7 +46,7 @@ agreement on impact, priorities and next steps.
 - **Explicit prioritization** prevents momentum loss after the meeting.
 - **Co-creation increases executive engagement and ownership.**
 
-## Account-management relevance
+## Account-management relevance (model note)
 
 This structure maps cleanly onto an executive business review aimed at
 expansion: confirm the impact achieved (current state), co-create the next impact

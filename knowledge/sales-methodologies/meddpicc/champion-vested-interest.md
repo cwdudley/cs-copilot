@@ -1,11 +1,23 @@
 ---
 framework: meddpicc
 topic: champion
-source_title: "MEDMEN: The Crucial But Overlooked Champion Trait"
+source_title: 'MEDMEN: The Crucial But Overlooked Champion Trait'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/medmen-the-crucial-but-overlooked-champion-trait
 source_url: https://meddicc.com/resources/medmen-the-crucial-but-overlooked-champion-trait
-speakers: [Andy Whyte]
-retrieved_date: 2026-09-12
+speakers:
+- Andy Whyte
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -40,7 +52,7 @@ Tell a story about a similar Champion and what they got out of it, then watch
 whether it resonates. People reveal their own motivation in how they react to
 someone else's.
 
-## Coaching questions this supports
+## Coaching questions this supports (model note)
 
 - What does your Champion personally win if this succeeds?
 - Is their interest personal, business, or both — and how do you know?

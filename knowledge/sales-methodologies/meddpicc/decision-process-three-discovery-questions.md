@@ -1,10 +1,21 @@
 ---
 framework: meddpicc
 topic: decision-process
-source_title: "MEDMEN: Three Discovery Questions That Feel Like Cheating"
+source_title: 'MEDMEN: Three Discovery Questions That Feel Like Cheating'
 source_org: MEDDICC
+source_authority: MEDDICC (primary publisher of MEDDPICC training and content)
+source_type: practitioner_article
+priority: 2
+first_party_for:
+- meddpicc
+framework_version: MEDDPICC
+public_url: https://meddicc.com/resources/medmen-three-discovery-questions-that-feel-like-cheating
 source_url: https://meddicc.com/resources/medmen-three-discovery-questions-that-feel-like-cheating
-retrieved_date: 2026-09-12
+published_date: unknown
+date_basis: page shows 2026-05-27, a date shared by about 30 MEDDICC articles including older ones, so treated as a site date rather than publication
+retrieved_date: '2026-09-12'
+license: unknown
+reproduction_status: paraphrased_notes
 content_status: public
 ---
 
@@ -41,7 +52,7 @@ pressured, making them more open about timelines and progression.
 
 **Uncovers:** Decision Process, timing, commitment.
 
-## Account-management adaptation
+## Account-management adaptation (model note)
 
 Question 1 transfers directly to renewals and expansions: how did the last
 renewal or add-on purchase actually get approved, by whom, and how long did
