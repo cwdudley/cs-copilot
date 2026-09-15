@@ -311,8 +311,9 @@
           },
         });
       } catch (err) {
-        console.error(err);
-        setStatus("Could not start the conversation", "error");
+        console.error("startSession failed:", err);
+        // Show the real reason — the generic message hides what to fix.
+        setStatus(`Could not start: ${err?.message || err?.reason || String(err)}`, "error");
         connectBtn.disabled = false;
       }
     }
