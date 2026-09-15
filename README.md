@@ -28,6 +28,13 @@ writes `ELEVENLABS_AGENT_ID` back to `.env`:
 python provision.py
 ```
 
+After editing `coach/instructions.md`, push just the prompt to the existing
+agent (no re-upload):
+
+```bash
+python provision.py --update-prompt
+```
+
 Start the server and open <http://localhost:3100>:
 
 ```bash
@@ -74,14 +81,15 @@ The numbers are the argument:
 
 | | Before (LiveKit) | After (this branch) |
 |---|---|---|
-| Sent every turn | ~3,138 tokens | **~1,442 tokens** |
-| Total methodology | ~3,138 tokens | **~75,247 tokens** |
+| Sent every turn | ~3,138 tokens | **~2,374 tokens** |
+| Total methodology | ~3,138 tokens | **~76,179 tokens** |
 
 Adding SPICED, MEDDPICC and a corpus of 72 sourced documents grew the
 methodology about **24x** while **cutting per-turn prompt cost by
-54%**, because the new material went into retrieval rather than the prompt.
-The prompt grew from its low point of ~943 tokens when routing and provenance
-rules were added; those must apply every turn, so they belong there.
+24%**, because the new material went into retrieval rather than the prompt.
+The prompt grew from its low point of ~943 tokens as routing, provenance and
+coaching-behavior rules were added; those must apply every turn, so they belong
+there.
 
 That is the whole point. Under the old architecture these two goals were in
 direct conflict — every framework you added made the rate limit worse, so the

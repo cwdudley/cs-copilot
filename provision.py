@@ -202,6 +202,37 @@ def build_config(knowledge_base: list[dict]) -> dict:
     }
 
 
+def update_prompt(agent_id: str) -> None:
+    """Push coach/instructions.md to an existing agent, leaving everything else as is."""
+    url = f"{API_BASE}/convai/agents/{agent_id}"
+    resp = requests.get(url, headers=_headers(), timeout=60)
+    resp.raise_for_status()
+    prompt = resp.json()["conversation_config"]["agent"]["prompt"]
+    kb_before = len(prompt.get("knowledge_base") or [])
+
+    # Send the whole prompt object back with only the text changed, so the
+    # knowledge base, RAG settings and LLM are preserved exactly.
+    prompt["prompt"] = INSTRUCTIONS_PATH.read_text(encoding="utf-8")
+    payload = {"conversation_config": {"agent": {"prompt": prompt}}}
+    resp = requests.patch(url, headers=_headers(), json=payload, timeout=60)
+    if not resp.ok:
+        print(f"\n  ERROR {resp.status_code} on PATCH /convai/agents/{agent_id}", file=sys.stderr)
+        print(f"  {resp.text}\n", file=sys.stderr)
+        resp.raise_for_status()
+
+    saved = requests.get(url, headers=_headers(), timeout=60).json()
+    saved_prompt = saved["conversation_config"]["agent"]["prompt"]
+    kb_after = len(saved_prompt.get("knowledge_base") or [])
+    matches = saved_prompt.get("prompt") == prompt["prompt"]
+
+    print(f"Updated prompt on {agent_id}")
+    print(f"  Prompt matches instructions.md: {matches}")
+    print(f"  Knowledge base docs: {kb_before} before, {kb_after} after")
+    print(f"  RAG enabled: {(saved_prompt.get('rag') or {}).get('enabled')}")
+    if not matches or kb_after != kb_before:
+        sys.exit("Update did not apply cleanly; check the agent in the ElevenLabs dashboard.")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -209,12 +240,24 @@ def main() -> None:
         action="store_true",
         help="create a new agent even if ELEVENLABS_AGENT_ID is already set",
     )
+    parser.add_argument(
+        "--update-prompt",
+        action="store_true",
+        help="push coach/instructions.md to the existing agent without re-uploading anything",
+    )
     args = parser.parse_args()
 
     if not API_KEY:
         sys.exit("ELEVENLABS_API_KEY is not set. Add it to .env and re-run.")
 
     existing = os.getenv("ELEVENLABS_AGENT_ID")
+
+    if args.update_prompt:
+        if not existing:
+            sys.exit("ELEVENLABS_AGENT_ID is not set; run provision.py first to create the agent.")
+        update_prompt(existing)
+        return
+
     if existing and not args.recreate:
         print(f"ELEVENLABS_AGENT_ID already set ({existing}).")
         print("Re-run with --recreate to provision a fresh agent.")
