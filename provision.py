@@ -49,6 +49,10 @@ AGENT_NAME = "Account Management Coach"
 VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "cjVigY5qzO86Huf0OWal")
 # English agents must use a turbo or flash v2 model; the v2.5 models are rejected.
 TTS_MODEL = os.getenv("ELEVENLABS_TTS_MODEL", "eleven_flash_v2")
+
+# Seconds of user silence before the agent re-engages. Coaching involves long
+# thinking pauses, so use the documented maximum (30s) instead of the 7s default.
+TURN_TIMEOUT = 30.0
 LLM_MODEL = os.getenv("ELEVENLABS_LLM", "claude-sonnet-4-5")
 
 FIRST_MESSAGE = "Hey — what are you working on?"
@@ -198,6 +202,9 @@ def build_config(knowledge_base: list[dict]) -> dict:
                 "voice_id": VOICE_ID,
                 "model_id": TTS_MODEL,
             },
+            "turn": {
+                "turn_timeout": TURN_TIMEOUT,
+            },
         },
     }
 
@@ -207,13 +214,17 @@ def update_prompt(agent_id: str) -> None:
     url = f"{API_BASE}/convai/agents/{agent_id}"
     resp = requests.get(url, headers=_headers(), timeout=60)
     resp.raise_for_status()
-    prompt = resp.json()["conversation_config"]["agent"]["prompt"]
+    current = resp.json()
+    prompt = current["conversation_config"]["agent"]["prompt"]
     kb_before = len(prompt.get("knowledge_base") or [])
 
-    # Send the whole prompt object back with only the text changed, so the
-    # knowledge base, RAG settings and LLM are preserved exactly.
+    # Send the whole prompt and turn objects back with only the prompt text and
+    # silence timeout changed, so the knowledge base, RAG settings, LLM and other
+    # turn settings are preserved exactly.
     prompt["prompt"] = INSTRUCTIONS_PATH.read_text(encoding="utf-8")
-    payload = {"conversation_config": {"agent": {"prompt": prompt}}}
+    turn = dict(current["conversation_config"].get("turn") or {})
+    turn["turn_timeout"] = TURN_TIMEOUT
+    payload = {"conversation_config": {"agent": {"prompt": prompt}, "turn": turn}}
     resp = requests.patch(url, headers=_headers(), json=payload, timeout=60)
     if not resp.ok:
         print(f"\n  ERROR {resp.status_code} on PATCH /convai/agents/{agent_id}", file=sys.stderr)
@@ -229,6 +240,7 @@ def update_prompt(agent_id: str) -> None:
     print(f"  Prompt matches instructions.md: {matches}")
     print(f"  Knowledge base docs: {kb_before} before, {kb_after} after")
     print(f"  RAG enabled: {(saved_prompt.get('rag') or {}).get('enabled')}")
+    print(f"  Turn timeout: {(saved['conversation_config'].get('turn') or {}).get('turn_timeout')}s")
     if not matches or kb_after != kb_before:
         sys.exit("Update did not apply cleanly; check the agent in the ElevenLabs dashboard.")
 

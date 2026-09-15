@@ -207,6 +207,50 @@
     let conversation = null;
     let connected = false;
 
+    // ── Silence handling ─────────────────────────────────────────────────
+    // The agent re-engages after its turn timeout (30s) of silence, and would
+    // keep doing so. Thinking pauses are normal in coaching, so the page sends
+    // activity signals (which reset that timer) through the first minute of
+    // quiet, lets exactly one check-in through after that, then stays quiet
+    // until the user speaks again.
+    const QUIET_GRACE_MS = 60000;    // pauses shorter than this never get a check-in
+    const ACTIVITY_PING_MS = 15000;  // must stay below the agent's 30s turn timeout
+
+    let silenceTimer = null;
+    let quietSince = 0;
+    let allowingCheckIn = false;
+    let checkedIn = false;
+
+    function startSilenceManager() {
+      stopSilenceManager();
+      quietSince = Date.now();
+      allowingCheckIn = false;
+      checkedIn = false;
+      silenceTimer = setInterval(() => {
+        const quietFor = Date.now() - quietSince;
+        if (checkedIn || quietFor < QUIET_GRACE_MS) {
+          conversation?.sendUserActivity?.();
+        } else {
+          allowingCheckIn = true;
+        }
+      }, ACTIVITY_PING_MS);
+    }
+
+    function stopSilenceManager() {
+      if (silenceTimer) clearInterval(silenceTimer);
+      silenceTimer = null;
+    }
+
+    function noteMessage(role) {
+      if (role === "user") {
+        checkedIn = false;          // the user is back; allow a future check-in
+      } else if (allowingCheckIn) {
+        checkedIn = true;           // that was the one check-in; no more
+      }
+      allowingCheckIn = false;
+      quietSince = Date.now();
+    }
+
     const statusEl     = document.getElementById("status");
     const connectBtn   = document.getElementById("connectBtn");
     const transcriptEl = document.getElementById("transcript");
@@ -278,6 +322,7 @@
 
           onConnect: () => {
             connected = true;
+            startSilenceManager();
             connectBtn.textContent = "Disconnect";
             connectBtn.classList.add("connected");
             connectBtn.disabled = false;
@@ -285,6 +330,7 @@
           },
 
           onDisconnect: () => {
+            stopSilenceManager();
             connected = false;
             conversation = null;
             connectBtn.textContent = "Connect";
@@ -302,6 +348,10 @@
 
           onMessage: (payload) => {
             const { text, role } = readMessage(payload);
+            // Silence is transcribed as "..."; it isn't speech, so it must not
+            // reset the check-in state or clutter the transcript.
+            if (!text || /^[\s.…]*$/.test(text)) return;
+            noteMessage(role);
             addTranscript(text, role);
           },
 
@@ -324,6 +374,7 @@
     }
 
     async function disconnect() {
+      stopSilenceManager();
       connectBtn.disabled = true;
       try {
         if (conversation) await conversation.endSession();

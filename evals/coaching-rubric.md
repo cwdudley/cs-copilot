@@ -5,7 +5,9 @@ For scoring the coach's responses in live tests or transcript review. This file 
 `coach/kb/` and `knowledge/`.
 
 The behaviors being tested are defined in `coach/instructions.md` under *How you
-coach* and *Opportunities and signals*.
+coach*, *Opportunities and signals*, *Stakeholder roles need evidence* and
+*Sequencing and parallel work*. Silence handling is a runtime setting on the
+agent, not a prompt rule.
 
 ---
 
@@ -20,23 +22,31 @@ Score each response turn against every criterion that applies:
 Judge a full multi-turn exchange as well as individual turns: some behaviors, like
 stopping discovery at the right time, only show across turns.
 
+Failure flags use the `flag` names below so results can be compared across runs.
+
 ---
 
 ## Penalize
 
-| # | Behavior |
-|---|---|
-| P1 | Treats a weak signal as a confirmed opportunity |
-| P2 | Forces MEDDPICC when the evidence doesn't call for it |
-| P3 | Manufactures urgency or pain |
-| P4 | Assumes someone is a Champion or Economic Buyer without evidence |
-| P5 | Recommends expansion despite unresolved customer-value problems that materially threaten it |
-| P6 | Gives a long prescriptive answer before gathering obviously missing context |
-| P7 | Ends with a permission-seeking question when a more diagnostic question was available |
-| P8 | Asks a generic question that wouldn't materially change the recommendation |
-| P9 | Asks several questions at once when one prioritized question would be better |
-| P10 | Keeps questioning after sufficient context exists |
-| P11 | Mechanically completes methodology fields instead of solving the account problem |
+| # | Flag | Behavior |
+|---|---|---|
+| P1 | `weak_signal_as_opportunity` | Treats a weak signal as a confirmed opportunity |
+| P2 | `forced_meddpicc` | Forces MEDDPICC when the evidence doesn't call for it |
+| P3 | `manufactured_urgency` | Manufactures urgency or pain |
+| P4 | `premature_role_assumption` | Assumes a stakeholder's role without evidence: Economic Buyer status (including inferring it from title or seniority), budget ownership, decision authority, signature authority, Champion status, or executive sponsorship |
+| P5 | `expansion_over_value_problem` | Recommends expansion despite unresolved customer-value problems that materially threaten it |
+| P6 | `premature_prescription` | Gives a long prescriptive answer before gathering obviously missing context |
+| P7 | `permission_seeking_ending` | Ends with a permission-seeking question when a more diagnostic question was available |
+| P8 | `generic_question` | Asks a question that wouldn't materially change the recommendation |
+| P9 | `stacked_questions` | Asks more than one question in a response |
+| P10 | `over_questioning` | Keeps questioning after sufficient context exists |
+| P11 | `mechanical_framework` | Mechanically completes methodology fields instead of solving the account problem |
+| P12 | `opportunity_stage_misclassified` | Treats an early opportunity as either fully qualified or nonexistent |
+| P13 | `meddpicc_as_gate` | Requires complete MEDDPICC, quantified Impact, Economic Buyer access or urgency before an opportunity can be opened or tracked |
+| P14 | `false_sequencing` | Says to finish X before Y when X doesn't materially block Y |
+| P15 | `missed_parallel_workstream` | Misses an obvious opportunity to run motions in parallel |
+| P16 | `motivation_inference` | Attributes the AM's questions or choices to fear, hesitation or avoidance without evidence |
+| P17 | `excessive_silence_nudging` | Repeatedly prompts the user during pauses (voice tests only) |
 
 ## Reward
 
@@ -50,6 +60,10 @@ stopping discovery at the right time, only show across turns.
 | R6 | Stops discovery once sufficient context exists |
 | R7 | Gives a clear recommendation and next action |
 | R8 | Keeps a concise, natural, manager-like coaching flow |
+| R9 | Distinguishes signal, early opportunity and qualified opportunity |
+| R10 | States qualification confidence explicitly |
+| R11 | Treats stakeholder roles as evidence-backed hypotheses |
+| R12 | Identifies when motions should run in parallel |
 
 ## Do not penalize
 
@@ -58,13 +72,16 @@ stopping discovery at the right time, only show across turns.
   vendor-consolidation target, using Economic Buyer and Compelling Event thinking
   immediately is correct.
 - A direct answer with no question, when no missing context would change it.
+- Sequencing when there is a genuine dependency, such as an unresolved
+  implementation failure the expansion would reproduce.
 
 ---
 
 ## Test scenarios
 
 Each scenario names the behaviors it mainly exercises. "Strong" and "weak" describe
-the shape of a response, not a script to match.
+the shape of a response, not a script to match. Scenarios 1–8 and N1–N4 are run as
+text turns by the scenario runner; scenario 10 needs a voice session.
 
 ### 1. Usage growth
 
@@ -80,7 +97,7 @@ the shape of a response, not a script to match.
 > "Sarah loves us and wants to roll us out to her whole department."
 
 - **Strong:** treats enthusiasm as a signal and tests the Champion assumption —
-  for example, whether Sarah has ever influenced a decision internally. (R1, R2)
+  for example, whether Sarah has ever influenced a decision internally. (R1, R2, R11)
 - **Weak:** calls Sarah the Champion or Economic Buyer and builds a plan on it.
   (P4, P1)
 
@@ -107,8 +124,11 @@ the shape of a response, not a script to match.
 > teams. Our current teams hit their targets last quarter."
 
 - **Strong:** a clear, specific recommendation and next action, with at most one
-  question only if it would change the plan. (R6, R7, R5)
-- **Weak:** keeps asking qualification questions. (P10, P11)
+  question only if it would change the plan. Doesn't declare the VP the Economic
+  Buyer: owning the initiative and approved budget don't establish who approved
+  it. (R6, R7, R5, R11)
+- **Weak:** keeps asking qualification questions, or labels the VP the Economic
+  Buyer. (P10, P11, P4)
 
 ### 6. Positive-goal opportunity
 
@@ -147,3 +167,52 @@ the shape of a response, not a script to match.
 - **Strong:** ends with the single most useful diagnostic question, or with a
   recommendation if context is sufficient. (R2, R7)
 - **Weak:** ends with "Does that sound right?" or "Want to talk through it?" (P7)
+
+### N1. Early opportunity
+
+> "Our Security team at Globex is live and happy. The Platform team lead told me
+> they have the same problem and they're interested. Do I have an opportunity?"
+
+- **Strong:** calls it credible enough to track as an early opportunity, says it
+  isn't qualified yet, and names the biggest thing to validate next, usually
+  business impact. (R9, R10, R2)
+- **Weak:** "no opportunity until Impact is quantified," or treats it as qualified.
+  (P12, P13)
+
+### N2. Role assumption
+
+> "Globex is a $900K renewal in four months. I've only ever worked with the
+> Director of IT. There's a VP of Infrastructure I've never met."
+
+- **Strong:** executive coverage is worth building, but the VP's role is unknown;
+  asks whether the VP owns the budget or has approval authority. (R11, R1)
+- **Weak:** "meet the VP — they control the budget." (P4)
+
+### N3. Parallel workstreams
+
+> "We have no executive coverage on the existing Globex account, but their
+> Analytics business unit just asked us for a demo. Should I fix exec coverage
+> before I chase Analytics?"
+
+- **Strong:** runs both — build executive coverage and take the Analytics demo —
+  unless there's a real dependency. (R12, R7)
+- **Weak:** "fix exec coverage first." (P14, P15)
+
+### N4. Motivation inference
+
+> Turn 1: "For expansion at Globex, should I prioritize Platform or Security?
+> Platform uses the same workflow as the team where we already proved value.
+> Security has a different use case but has budget this quarter."
+> Turn 2: "I keep coming back to Security though. They have budget."
+
+- **Strong:** turn 2 keeps the recommendation while challenging the reasoning, and
+  invites evidence that would change it. (R4, R5)
+- **Weak:** "what's really holding you back?" or attributes the pushback to fear.
+  (P16)
+
+### 10. Silence (voice)
+
+> Connect, let the agent finish its greeting, then stay silent for 45 seconds.
+
+- **Strong:** no prompt, or at most one light re-engagement after a long pause.
+- **Weak:** repeated "Still there?" style prompts. (P17)

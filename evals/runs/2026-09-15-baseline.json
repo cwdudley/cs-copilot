@@ -1,0 +1,142 @@
+[
+  {
+    "id": "S1-usage-growth",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "Acme's usage is up 40% this quarter. Should I pitch the enterprise tier?",
+        "agent": "I wouldn't pitch yet. Usage growth is a meaningful signal, but first I'd understand what caused it.\n\nWhat changed \u2014 did they launch something new, add a team, or shift how they're using the product?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "S2-enthusiastic-contact",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "Sarah loves us and wants to roll us out to her whole department.",
+        "agent": "That's great to hear. What makes you say Sarah loves us? What evidence do you have?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "S3-seats-value-problem",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "They want 50 more seats, but only 60% of their current seats are active.",
+        "agent": "That's a real flag. Before I'd move forward, I need to understand why 40% are sitting unused. What do you know about those inactive seats?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "S4-whitespace",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "They have three other business units we don't sell to.",
+        "agent": "Got it \u2014 three business units where you're not present yet. Before we talk about whether to pursue them, I need to understand the current situation better.\n\nHow's the relationship and value delivery going in the business unit you already serve?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "S5-sufficient-context",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "Their VP of Ops owns a documented initiative to cut ticket handling time 25% by March, the budget is approved, and she's asked us for a proposal for two more teams. Our current teams hit their targets last quarter.",
+        "agent": "That's a strong setup \u2014 documented initiative, named owner with budget, proven value in the current deployment, and a clear ask. This looks like a real opportunity.\n\nBefore you build the proposal, I'd nail down one thing: has the VP of Ops already confirmed internally that expanding with you is how they're solving this, or is she still evaluating options?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "S6-positive-goal",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "They're launching in EMEA next year and need to meet local compliance requirements.",
+        "agent": "Got it \u2014 expansion into EMEA with compliance requirements driving it.\n\nWhat product or capability are they currently using with you, and what specifically do the EMEA compliance requirements demand that they don't have today?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "S7-multi-turn-adaptation",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "Usage is way up at Northwind.",
+        "agent": "That's a signal worth understanding. What changed \u2014 do you know what's driving the increase?"
+      },
+      {
+        "user": "They reorganized and moved support onto our platform, but nobody's sure who owns it now.",
+        "agent": "That's a problem. You've got expanded usage but no clear owner, which means no one to anchor value to, no one who can advocate internally, and no one to qualify an expansion opportunity with if one exists.\n\nWho was your main contact before the reorganization?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "S8-quick-factual",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "What's the difference between a Critical Event and a Compelling Event?",
+        "agent": "Critical Event comes from Winning by Design's SPICED framework. It's a dated consequence that creates urgency \u2014 something specific happening on a timeline that makes the customer's pain or goal time-sensitive. Think \"Q4 compliance deadline\" or \"new product launch in March.\"\n\nCompelling Event is MEDDICC's term for essentially the same concept \u2014 a time-bound reason the customer needs to act now rather than later. MEDDICC defines it as an event with meaningful business consequences that drives decision timing.\n\nBoth anchor urgency to a specific date and consequence. The frameworks just use different labels for the same diagnostic element. When you're running SPICED, call it Critical Event. When you're qualifying with MEDDICC, call it Compelling Event.\n\nWhat's prompting the question \u2014 are you trying to establish urgency on something specific?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "N1-early-opportunity",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "Our Security team at Globex is live and happy. The Platform team lead told me they have the same problem and they're interested. Do I have an opportunity?",
+        "agent": "Not yet \u2014 you have a signal worth investigating.\n\nThe Platform lead saying they have \"the same problem\" is useful, but it's secondhand. You don't know if it's actually the same problem, whether it's painful enough to act on, or if this person can influence a decision.\n\nWhat I'd find out first: Does the Platform team actually experience the problem the same way Security did, or is this person assuming they do?\n\nTalk to someone on the Platform team directly. Understand their situation \u2014 what's breaking, what they're trying to achieve, what happens if they don't solve it. Then you'll know if there's a real problem worth pursuing.\n\nWhat do you know about the Platform team's actual situation?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "N2-vp-role-assumption",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "Globex is a $900K renewal in four months. I've only ever worked with the Director of IT. There's a VP of Infrastructure I've never met.",
+        "agent": "That's a meaningful gap. With $900K on the line and four months out, you need to understand whether the Director can actually renew this or if the VP holds the decision.\n\nWhat do you know about how the original deal got signed \u2014 did the Director have authority then, or did it go higher?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "N3-parallel-workstreams",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "We have no executive coverage on the existing Globex account, but their Analytics business unit just asked us for a demo. Should I fix exec coverage before I chase Analytics?",
+        "agent": "I'd chase Analytics now and use it to build exec coverage, not the other way around.\n\nHere's why: you have an inbound signal from a new business unit with a specific ask. That's momentum. If you pause to manufacture executive relationships first, you risk the Analytics interest cooling while you're still trying to get on someone's calendar.\n\nWhat's driving the demo request \u2014 do you know what problem or initiative Analytics is working on?"
+      }
+    ],
+    "audio_chunks": 0
+  },
+  {
+    "id": "N4-motivation-inference",
+    "greeting": "Hey \u2014 what are you working on?",
+    "exchange": [
+      {
+        "user": "For expansion at Globex, should I prioritize Platform or Security? Platform uses the same workflow as the team where we already proved value. Security has a different use case but has budget this quarter.",
+        "agent": "I'd prioritize Security.\n\nPlatform looks easier because it mirrors what's working, but \"same workflow\" doesn't automatically mean they have a problem worth solving or that they'll buy. Security has actual budget allocated this quarter \u2014 that's a meaningful signal of intent and urgency that Platform doesn't have yet.\n\nWhat's the business problem Security is trying to solve with that budget?"
+      },
+      {
+        "user": "I keep coming back to Security though. They have budget.",
+        "agent": "Right \u2014 and budget matters, which is why I said Security. But having budget allocated doesn't mean they'll spend it with you, or that the opportunity is real yet.\n\nWhat do you know about what they're trying to achieve? What problem are they solving, or what outcome are they after?"
+      }
+    ],
+    "audio_chunks": 0
+  }
+]
