@@ -35,7 +35,7 @@ python server.py
 ```
 
 Optional `.env` overrides: `ELEVENLABS_VOICE_ID`, `ELEVENLABS_TTS_MODEL`
-(default `eleven_flash_v2_5`), `ELEVENLABS_LLM` (default `claude-sonnet-4-5`).
+(default `eleven_flash_v2`), `ELEVENLABS_LLM` (default `claude-sonnet-4-5`).
 
 ---
 

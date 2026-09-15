@@ -18,6 +18,7 @@ Requires ELEVENLABS_API_KEY in .env. Writes ELEVENLABS_AGENT_ID back to .env.
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -38,11 +39,16 @@ INSTRUCTIONS_PATH = ROOT / "coach" / "instructions.md"
 KB_DIR = ROOT / "coach" / "kb"
 KNOWLEDGE_DIR = ROOT / "knowledge"
 
+# Maps a hash of each uploaded document to its ElevenLabs id, so a retry after a
+# failed agent create reuses documents instead of uploading duplicates.
+UPLOAD_CACHE = ROOT / ".kb_upload_cache.json"
+
 AGENT_NAME = "Account Management Coach"
 
 # Default is a stock ElevenLabs voice; override with ELEVENLABS_VOICE_ID in .env.
 VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "cjVigY5qzO86Huf0OWal")
-TTS_MODEL = os.getenv("ELEVENLABS_TTS_MODEL", "eleven_flash_v2_5")
+# English agents must use a turbo or flash v2 model; the v2.5 models are rejected.
+TTS_MODEL = os.getenv("ELEVENLABS_TTS_MODEL", "eleven_flash_v2")
 LLM_MODEL = os.getenv("ELEVENLABS_LLM", "claude-sonnet-4-5")
 
 FIRST_MESSAGE = "Hey — what are you working on?"
@@ -136,6 +142,7 @@ def upload_knowledge_base() -> list[dict]:
         sys.exit(f"No markdown files found in {KB_DIR} or {KNOWLEDGE_DIR}")
 
     entries = []
+    cache = json.loads(UPLOAD_CACHE.read_text(encoding="utf-8")) if UPLOAD_CACHE.exists() else {}
     print(f"Uploading {len(docs)} knowledge base documents...")
 
     for path in docs:
@@ -150,9 +157,16 @@ def upload_knowledge_base() -> list[dict]:
         name = _doc_name(path, meta)
         text = _tag_headings(text, _provenance_tag(meta))
 
-        result = _post("/convai/knowledge-base/text", {"text": text, "name": name})
-        entries.append({"type": "text", "name": name, "id": result["id"]})
-        print(f"  + {name}  ({result['id']})")
+        key = hashlib.sha256(f"{name}\n{text}".encode("utf-8")).hexdigest()
+        doc_id = cache.get(key)
+        if doc_id:
+            print(f"  = {name}  ({doc_id}, already uploaded)")
+        else:
+            doc_id = _post("/convai/knowledge-base/text", {"text": text, "name": name})["id"]
+            cache[key] = doc_id
+            UPLOAD_CACHE.write_text(json.dumps(cache, indent=2), encoding="utf-8")
+            print(f"  + {name}  ({doc_id})")
+        entries.append({"type": "text", "name": name, "id": doc_id})
 
     return entries
 

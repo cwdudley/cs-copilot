@@ -15,3 +15,5 @@ Thumbs.db
 .claude/
 .idea/
 .vscode/
+
+.kb_upload_cache.json
