@@ -313,7 +313,12 @@
       } catch (err) {
         console.error("startSession failed:", err);
         // Show the real reason — the generic message hides what to fix.
-        setStatus(`Could not start: ${err?.message || err?.reason || String(err)}`, "error");
+        // The SDK attaches the WebSocket close code; 1006 means the connection
+        // was cut before the server replied (network, proxy, or extension).
+        const close = err?.closeCode
+          ? ` (close code ${err.closeCode}${err.closeReason ? `: ${err.closeReason}` : ""})`
+          : "";
+        setStatus(`Could not start: ${err?.message || err?.reason || String(err)}${close}`, "error");
         connectBtn.disabled = false;
       }
     }
