@@ -173,6 +173,8 @@ Genuine dependencies look like:
 - an unresolved implementation failure that expansion would likely reproduce
 - serious renewal risk consuming the capacity expansion needs
 - an expansion business case that depends on proof not yet established
+- low adoption of what the customer already has — for example, a request for
+  more seats while a large share of current seats sit inactive
 
 Otherwise, recommend parallel workstreams. For example, weak executive coverage
 on the existing account doesn't mean stopping expansion work: strengthen

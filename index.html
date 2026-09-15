@@ -202,7 +202,8 @@
   <footer>SuccessCOACHING · SPICED · MEDDPICC</footer>
 
   <script type="module">
-    import { Conversation } from "https://cdn.jsdelivr.net/npm/@elevenlabs/client@latest/+esm";
+    // Pinned: a new SDK release should never change behaviour mid-demo.
+    import { Conversation } from "https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.25.0/+esm";
 
     let conversation = null;
     let connected = false;
@@ -363,12 +364,19 @@
       } catch (err) {
         console.error("startSession failed:", err);
         // Show the real reason — the generic message hides what to fix.
-        // The SDK attaches the WebSocket close code; 1006 means the connection
-        // was cut before the server replied (network, proxy, or extension).
+        // Close code 1006 means the connection was cut before ElevenLabs replied:
+        // usually an ad/privacy blocker, antivirus, VPN or corporate network.
+        const blocked = err?.closeCode === 1006
+          || /closed unexpectedly|socket error/i.test(err?.message || "");
         const close = err?.closeCode
           ? ` (close code ${err.closeCode}${err.closeReason ? `: ${err.closeReason}` : ""})`
           : "";
-        setStatus(`Could not start: ${err?.message || err?.reason || String(err)}${close}`, "error");
+        setStatus(
+          blocked
+            ? "Can't reach the voice service. An ad or privacy blocker, antivirus, VPN or work network may be blocking it — try a private window or a different network."
+            : `Could not start: ${err?.message || err?.reason || String(err)}${close}`,
+          "error",
+        );
         connectBtn.disabled = false;
       }
     }

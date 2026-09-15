@@ -75,5 +75,8 @@ app.router.add_get("/signed-url", handle_signed_url)
 if __name__ == "__main__":
     if not AGENT_ID:
         print("Warning: ELEVENLABS_AGENT_ID is not set. Run provision.py first.\n")
-    print(f"AM Coach -> http://localhost:{PORT}")
-    web.run_app(app, host="localhost", port=PORT, print=None)
+    # Hosts route traffic to the container, so they need 0.0.0.0; locally the
+    # default keeps the server off the network.
+    host = os.getenv("HOST", "localhost")
+    print(f"AM Coach -> http://{'localhost' if host == '0.0.0.0' else host}:{PORT}")
+    web.run_app(app, host=host, port=PORT, print=None)
