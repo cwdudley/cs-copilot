@@ -29,7 +29,9 @@ logger = logging.getLogger("am-coach")
 API_BASE = "https://api.elevenlabs.io/v1"
 API_KEY = os.getenv("ELEVENLABS_API_KEY")
 AGENT_ID = os.getenv("ELEVENLABS_AGENT_ID")
-PORT = 3000
+# 3000 is commonly taken by other local dev servers; sharing an origin with
+# another app's open tabs caused stale pages and confusing 404s.
+PORT = int(os.getenv("PORT", "3100"))
 
 
 async def handle_signed_url(request):
@@ -55,7 +57,8 @@ async def handle_signed_url(request):
 
 
 async def handle_index(request):
-    return web.FileResponse("index.html")
+    # no-store so a reload always picks up UI changes during development.
+    return web.FileResponse("index.html", headers={"Cache-Control": "no-store"})
 
 
 async def _http_session(app):

@@ -28,7 +28,7 @@ writes `ELEVENLABS_AGENT_ID` back to `.env`:
 python provision.py
 ```
 
-Start the server and open <http://localhost:3000>:
+Start the server and open <http://localhost:3100>:
 
 ```bash
 python server.py
