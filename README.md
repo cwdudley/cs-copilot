@@ -4,8 +4,9 @@ A voice coach for CS and account management leaders, built on ElevenLabs Agents.
 Grounded in the SuccessCOACHING methodology, plus SPICED for diagnosis and
 MEDDPICC for qualification.
 
-> This branch (`elevenlabs-am-coach`) is a rebuild of the LiveKit version on
-> `main`. See **Why this exists** below for the architectural argument.
+> This is a rebuild of the original LiveKit version, which is preserved on the
+> [`livekit`](../../tree/livekit) branch. See **Why this exists** below for the
+> architectural argument.
 
 ---
 
@@ -130,7 +131,7 @@ turn-taking is the difference between a coach and an interrogator.
 - **Less pipeline control.** No independent STT swap, no direct VAD tuning.
 - **Pricing shifts** from component costs to per-minute conversational.
 - **LLM routing** is theirs unless you wire a custom endpoint.
-- **Multi-agent simulation doesn't fit.** The `main` branch runs two agents
+- **Multi-agent simulation doesn't fit.** The `livekit` branch runs two agents
   talking to each other in a shared LiveKit room, which needs agents as
   first-class room peers (`participant_kinds=[STANDARD, AGENT]`). That is
   LiveKit's design center, not this platform's. Rebuilding it here would mean
